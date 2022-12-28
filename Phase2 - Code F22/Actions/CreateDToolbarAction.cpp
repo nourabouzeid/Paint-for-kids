@@ -15,8 +15,13 @@ void CreateDToolbarAction::ReadActionParameters()
 
 
 
-void CreateDToolbarAction::Execute()
+void CreateDToolbarAction::Execute(bool w)
 {
 	Output* pOut = pManager->GetOutput();
 	pOut->CreateDrawToolBar();
+}
+
+bool CreateDToolbarAction::isrecord()
+{
+	return true;
 }

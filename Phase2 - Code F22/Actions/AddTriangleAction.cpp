@@ -40,9 +40,10 @@ void AddTriangleAction::ReadActionParameters()
 }
 
 //Execute the action
-void AddTriangleAction::Execute()
+void AddTriangleAction::Execute(bool w)
 {
 	//This action needs to read some parameters first
+	if(w)
 	ReadActionParameters();
 
 	//Create a rectangle with the parameters read from the user
@@ -50,4 +51,9 @@ void AddTriangleAction::Execute()
 
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(R);
+}
+
+bool AddTriangleAction::isrecord()
+{
+	return true;
 }

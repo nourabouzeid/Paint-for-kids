@@ -14,7 +14,7 @@ void PickByTypeAction::ReadActionParameters()
 
 }
 
-void PickByTypeAction::Execute()
+void PickByTypeAction::Execute(bool w)
 {
 	string random[5];
 	string fig;
@@ -61,4 +61,9 @@ void PickByTypeAction::Execute()
 	SelectAction*select=new SelectAction(pManager);
 	select->Execute();
 
+}
+
+bool PickByTypeAction::isrecord()
+{
+	return false;
 }

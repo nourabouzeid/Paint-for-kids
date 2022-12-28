@@ -15,8 +15,13 @@ void CreatDAction::ReadActionParameters()
 
 
 
-void CreatDAction::Execute()
+void CreatDAction::Execute(bool w)
 {
 	Output* pOut = pManager->GetOutput();
 	pOut->CreateDrawColorToolBar();
+}
+
+bool CreatDAction::isrecord()
+{
+	return true;
 }

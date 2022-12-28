@@ -31,9 +31,10 @@ void AddHexAction::ReadActionParameters()
 }
 
 //Execute the action
-void AddHexAction::Execute()
+void AddHexAction::Execute(bool w)
 {
 	//This action needs to read some parameters first
+	if(w)
 	ReadActionParameters();
 
 	//Create a rectangle with the parameters read from the user
@@ -41,4 +42,9 @@ void AddHexAction::Execute()
 
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(R);
+}
+
+bool AddHexAction::isrecord()
+{
+	return true;
 }

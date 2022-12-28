@@ -15,9 +15,14 @@ void ClearAllAction::ReadActionParameters()
 
 
 
-void ClearAllAction::Execute()
+void ClearAllAction::Execute(bool w)
 {
 	Output* pOut = pManager->GetOutput();
 	pOut->ClearDrawArea();
 	pManager->deleteallfigure();
+}
+
+bool ClearAllAction::isrecord()
+{
+	return false;
 }

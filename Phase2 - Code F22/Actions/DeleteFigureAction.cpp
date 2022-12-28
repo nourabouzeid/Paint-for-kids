@@ -15,11 +15,16 @@ void DeleteFigureAction::ReadActionParameters()
 
 
 
-void DeleteFigureAction::Execute()
+void DeleteFigureAction::Execute(bool w)
 {
 	CFigure* cf;
 	Output* pOut = pManager->GetOutput();
 	pOut->ClearDrawArea();
 	cf= pManager->getselectedfigure();
 	pManager->deletefigure(cf);
+}
+
+bool DeleteFigureAction::isrecord()
+{
+	return true;
 }

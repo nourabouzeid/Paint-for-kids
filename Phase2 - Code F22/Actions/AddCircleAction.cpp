@@ -35,9 +35,10 @@ void AddCircleAction::ReadActionParameters()
 }
 
 //Execute the action
-void AddCircleAction::Execute()
+void AddCircleAction::Execute(bool w)
 {
 	//This action needs to read some parameters first
+	if(w)
 	ReadActionParameters();
 
 	//Create a rectangle with the parameters read from the user
@@ -45,4 +46,9 @@ void AddCircleAction::Execute()
 
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(R);
+}
+
+bool AddCircleAction::isrecord()
+{
+	return true;
 }

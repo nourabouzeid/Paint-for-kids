@@ -15,8 +15,13 @@ void CreatFAction::ReadActionParameters()
 
 
 
-void CreatFAction::Execute()
+void CreatFAction::Execute(bool w)
 {
 	Output* pOut = pManager->GetOutput();
 	pOut->CreateFillColorToolBar();
+}
+
+bool CreatFAction::isrecord()
+{
+	return true;
 }

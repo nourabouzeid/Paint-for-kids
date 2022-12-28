@@ -31,9 +31,10 @@ void AddSqrAction::ReadActionParameters()
 }
 
 //Execute the action
-void AddSqrAction::Execute()
+void AddSqrAction::Execute(bool w)
 {
 	//This action needs to read some parameters first
+	if(w)
 	ReadActionParameters();
 
 	//Create a rectangle with the parameters read from the user
@@ -41,4 +42,9 @@ void AddSqrAction::Execute()
 
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(R);
+}
+
+bool AddSqrAction::isrecord()
+{
+	return true;
 }

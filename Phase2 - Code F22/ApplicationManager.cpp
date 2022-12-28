@@ -8,13 +8,19 @@ ApplicationManager::ApplicationManager()
 	pOut = new Output;
 	pIn = pOut->CreateInput();
 	SelectedFig = NULL;
+	lastaction = NULL;
+	actnum = 0;
 	FigCount = 0;
+	startrecord = NULL;
+	recording = false;
 	f = 0;
 	ID=1;
 		
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
 		FigList[i] = NULL;	
+	for (int i = 0; i < 20; i++)
+		act[i] = NULL;
 }
 
 //==================================================================================//
@@ -126,6 +132,18 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case CLEAR:
 			pAct = new ClearAllAction(this);
 			break;
+		case STARTRECORDING:
+			pAct = new StartAction(this);
+			startrecord = pAct;
+			recording = true;
+			break;
+		case STOPRECORDING:
+			pAct = new StopAction(this);
+			recording = false;
+			break;
+		case PLAYRECORDING:
+			pAct = new PlayRecordAction(this);
+			break;
 		case DELET:
 			pAct = new DeleteFigureAction(this);
 		case EXIT:
@@ -136,12 +154,15 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case STATUS:	//a click on the status bar ==> no action
 			return;
 	}
-	
+	pOut->ClearStatusBar();
+	lastaction = pAct;
+
 	//Execute the created action
-	if(pAct != NULL)
+	if (pAct != NULL)
 	{
-		pAct->Execute();//Execute
-		delete pAct;	//You may need to change this line depending to your implementation
+		pAct->Execute(true);//Execute
+		if (recording && ActType != STARTRECORDING)
+			startrecord->Execute(true);
 		pAct = NULL;
 	}
 }
@@ -159,6 +180,12 @@ void ApplicationManager::deleteallfigure()
 	FigCount = 0;
 	SelectedFig = NULL;
 }
+
+Action* ApplicationManager::getlastaction()
+{
+	return lastaction;
+}
+
 void ApplicationManager::deletefigure(CFigure* cf1)
 {
 	CFigure* temp;
@@ -225,6 +252,23 @@ void ApplicationManager::setselectedfigure(CFigure* cf)
 CFigure* ApplicationManager::getselectedfigure()
 {
 	return SelectedFig;
+}
+
+void ApplicationManager::setlastaction(Action* Act)
+{
+	if (actnum < 20)
+		act[actnum++] = Act;
+}
+
+void ApplicationManager::excuteplayactions()
+{
+	for (int i = 0; i < actnum; i++)
+	{
+		Sleep(1000);
+		act[i]->Execute(false);
+		pOut->ClearDrawArea();
+		UpdateInterface();
+	}
 }
 
 CFigure* ApplicationManager::GetFigure(Point p) const

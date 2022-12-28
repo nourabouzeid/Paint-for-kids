@@ -20,10 +20,11 @@ void SelectAction::ReadActionParameters()
 	pOut->ClearStatusBar();
 }
 
-void SelectAction::Execute()
+void SelectAction::Execute(bool w)
 {
 	CFigure* cf1;
 	CFigure* cf2;
+	if(w)
 	ReadActionParameters();
 	cf2= pManager->getselectedfigure();
 	cf1= pManager->GetFigure(p);
@@ -43,3 +44,9 @@ void SelectAction::Execute()
 		}
 	}
 }
+
+bool SelectAction::isrecord()
+{
+	return true;
+}
+

@@ -1,13 +1,12 @@
 #pragma once
 #include "Action.h"
-class CreateDToolbarAction :   public Action
+class StopAction : public Action
 {
 private:
 public:
-	CreateDToolbarAction(ApplicationManager* pApp);
+	StopAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();
 	virtual void Execute(bool w = true);
 	bool isrecord();
-
 };
 

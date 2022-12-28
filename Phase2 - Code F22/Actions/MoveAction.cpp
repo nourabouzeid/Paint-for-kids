@@ -28,8 +28,14 @@ void MoveAction::ReadActionParameters()
 
 
 
-void MoveAction::Execute()
+void MoveAction::Execute(bool w)
 {
+	if(w)
 	ReadActionParameters();
 	pManager->MOVEE(p);
+}
+
+bool MoveAction::isrecord()
+{
+	return true;
 }

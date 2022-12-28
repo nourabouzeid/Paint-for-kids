@@ -15,8 +15,13 @@ void CreatFigureAction::ReadActionParameters()
 
 
 
-void CreatFigureAction::Execute()
+void CreatFigureAction::Execute(bool w)
 {
 	Output* pOut = pManager->GetOutput();
 	pOut->CreateFigureToolBar();
+}
+
+bool CreatFigureAction::isrecord()
+{
+	return true;
 }

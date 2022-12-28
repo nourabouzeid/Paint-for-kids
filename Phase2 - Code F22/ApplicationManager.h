@@ -3,6 +3,7 @@
 
 #include "DEFS.h"
 #include "Figures\CFigure.h"
+#include "Actions\Action.h"
 #include "GUI\input.h"
 #include "GUI\output.h"
 #include "Actions\AddRectAction.h"
@@ -24,6 +25,9 @@
 #include "Actions\SaveAction.h"
 #include "Actions\LoadAction.h"
 #include "Actions\PickByTypeAction.h"
+#include "Actions\StartAction.h"
+#include "Actions\StopAction.h"
+#include "Actions\PlayRecordAction.h"
 
 //Main class that manages everything in the application.
 class ApplicationManager
@@ -32,11 +36,14 @@ class ApplicationManager
 
 private:
 	color c1;
-	int FigCount, f,ID;		//Actual number of figures
+	int FigCount, f, ID, actnum;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
+	Action* act[20];
+	bool recording;
 
 	CFigure* SelectedFig; //Pointer to the selected figure
-
+	Action* lastaction;
+	Action* startrecord;
 	//Pointers to Input and Output classes
 	Input *pIn;
 	Output *pOut;
@@ -57,6 +64,9 @@ public:
 	color getcolor();
 	void deleteallfigure();
 	CFigure* getselectedfigure();
+	void setlastaction(Action* act);
+	void excuteplayactions();
+	Action* getlastaction();
 	void deletefigure(CFigure* cf1);
 	void MOVEE(Point p) const;
 	void SaveAll(ofstream& Fout);

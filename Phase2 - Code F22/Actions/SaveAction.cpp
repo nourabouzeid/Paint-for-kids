@@ -23,12 +23,18 @@ void SaveAction::ReadActionParameters()
 	pOut->ClearStatusBar();
 }
 
-void SaveAction::Execute()
+void SaveAction::Execute(bool w)
 {
+	if(w)
 	ReadActionParameters();
 	Fout.open(s+".txt");
 	Fout<<crntdclr<<"   "<<crntfclr<<endl; 
 	pManager->SaveAll(Fout);
 	Fout.close();
 
+}
+
+bool SaveAction::isrecord()
+{
+	return false;
 }

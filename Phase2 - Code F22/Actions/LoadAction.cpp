@@ -18,8 +18,9 @@ void LoadAction::ReadActionParameters()
 	pOut->ClearStatusBar();
 }
 
-void LoadAction::Execute()
+void LoadAction::Execute(bool w)
 {
+	if(w)
 	ReadActionParameters();
 	Output* pOut = pManager->GetOutput();
 	pOut->ClearDrawArea();
@@ -58,4 +59,9 @@ void LoadAction::Execute()
 			pManager->AddFigure(triangle);
 		}
 	}
+}
+
+bool LoadAction::isrecord()
+{
+	return false;
 }

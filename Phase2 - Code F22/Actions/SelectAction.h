@@ -8,6 +8,7 @@ private:
 public:
 	SelectAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();
-	virtual void Execute();
+	virtual void Execute(bool w = true);
+	bool isrecord();
 };
 
