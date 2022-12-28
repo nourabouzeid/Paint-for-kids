@@ -25,7 +25,6 @@ void LoadAction::Execute()
 	pOut->ClearDrawArea();
 	pManager->deleteallfigure();
 	Fin.open(name+".txt");
-	int c=4;
 	while(Fin>>fig)
 	{
 		if(fig=="RECTANGLE")

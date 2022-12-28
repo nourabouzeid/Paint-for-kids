@@ -120,6 +120,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case LOAD:
 			pAct=new LoadAction(this);
 			break;
+		case PICKWITHTYPE:
+			pAct=new PickByTypeAction(this);
+			break;
 		case CLEAR:
 			pAct = new ClearAllAction(this);
 			break;

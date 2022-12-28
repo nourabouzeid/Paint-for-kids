@@ -3,6 +3,7 @@
 class CreatePToolbarAction :  public Action
 {
 private:
+	ofstream Fout;
 public:
 	CreatePToolbarAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();

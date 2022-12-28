@@ -3,7 +3,7 @@
 class PickByTypeAction:public Action
 {
 private:
-	
+	ifstream Fin;
 public:
 	PickByTypeAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();

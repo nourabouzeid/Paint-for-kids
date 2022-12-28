@@ -1,8 +1,9 @@
-﻿Build started 12/28/2022 7:00:59 PM.
-     1>Project "C:\Users\kabou\Documents\GitHub\Phase2 - Code F22\PT-Project.vcxproj" on node 2 (Build target(s)).
+﻿Build started 12/28/2022 10:06:43 PM.
+     1>Project "C:\Users\kabou\Documents\GitHub\Phase-2-project\Phase2 - Code F22\PT-Project.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _VC80_UPGRADE=0x0600 /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug/" /Fd".\Debug/vc110.pdb" /FR".\Debug\\" /Gd /TP /analyze- /errorReport:prompt Figures\CTriangle.cpp
-         CTriangle.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _VC80_UPGRADE=0x0600 /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug/" /Fd".\Debug/vc110.pdb" /FR".\Debug\\" /Gd /TP /analyze- /errorReport:prompt Actions\PickByTypeAction.cpp
+         PickByTypeAction.cpp
+     1>c:\users\kabou\documents\github\phase-2-project\phase2 - code f22\actions\pickbytypeaction.cpp(62): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:".\Debug/PT Project.exe" /INCREMENTAL /NOLOGO odbc32.lib odbccp32.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:".\Debug/PT Project.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\Debug\PT Project.lib" /MACHINE:X86 /SAFESEH .\Debug/AddCircleAction.obj
          .\Debug/AddHexAction.obj
@@ -19,6 +20,7 @@
          .\Debug/FillCAction.obj
          .\Debug/LoadAction.obj
          .\Debug/MoveAction.obj
+         .\Debug/PickByTypeAction.obj
          .\Debug/SaveAction.obj
          .\Debug/SelectAction.obj
          .\Debug/auxil.obj
@@ -68,9 +70,11 @@
          .\Debug/Output.obj
          .\Debug/ApplicationManager.obj
          .\Debug/main.obj
-         PT-Project.vcxproj -> C:\Users\kabou\Documents\GitHub\Phase2 - Code F22\.\Debug\PT Project.exe
-     1>Done Building Project "C:\Users\kabou\Documents\GitHub\Phase2 - Code F22\PT-Project.vcxproj" (Build target(s)).
+         PT-Project.vcxproj -> C:\Users\kabou\Documents\GitHub\Phase-2-project\Phase2 - Code F22\.\Debug\PT Project.exe
+       BscMake:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\bscmake.exe /nologo /o".\Debug/PT Project.bsc" .\Debug\AddCircleAction.sbr .\Debug\AddHexAction.sbr .\Debug\AddSqrAction.sbr .\Debug\AddTriangleAction.sbr .\Debug\ClearAllAction.sbr .\Debug\CreatDAction.sbr .\Debug\CreateDToolbarAction.sbr .\Debug\CreatePToolbarAction.sbr .\Debug\CreatFAction.sbr .\Debug\CreatFigureAction.sbr .\Debug\DeleteFigureAction.sbr .\Debug\DrawCAction.sbr .\Debug\FillCAction.sbr .\Debug\LoadAction.sbr .\Debug\MoveAction.sbr .\Debug\PickByTypeAction.sbr .\Debug\SaveAction.sbr .\Debug\SelectAction.sbr .\Debug\auxil.sbr .\Debug\CMUgraphics.sbr .\Debug\colors.sbr .\Debug\image.sbr .\Debug\jpegload.sbr .\Debug\keyqueue.sbr .\Debug\mousequeue.sbr .\Debug\windowinput.sbr .\Debug\jcomapi.sbr .\Debug\jcparam.sbr .\Debug\jdapimin.sbr .\Debug\jdapistd.sbr .\Debug\jdatasrc.sbr .\Debug\jdcoefct.sbr .\Debug\jdcolor.sbr .\Debug\jddctmgr.sbr .\Debug\jdhuff.sbr .\Debug\jdinput.sbr .\Debug\jdmainct.sbr .\Debug\jdmarker.sbr .\Debug\jdmaster.sbr .\Debug\jdmerge.sbr .\Debug\jdphuff.sbr .\Debug\jdpostct.sbr .\Debug\jdsample.sbr .\Debug\jdtrans.sbr .\Debug\jerror.sbr .\Debug\jidctflt.sbr .\Debug\jidctfst.sbr .\Debug\jidctint.sbr .\Debug\jidctred.sbr .\Debug\jmemmgr.sbr .\Debug\jmemnobs.sbr .\Debug\jquant1.sbr .\Debug\jquant2.sbr .\Debug\jutils.sbr .\Debug\CCircle.sbr .\Debug\CFigure.sbr .\Debug\CHex.sbr .\Debug\CRectangle.sbr .\Debug\AddRectAction.sbr .\Debug\CSquare.sbr .\Debug\CTriangle.sbr .\Debug\Input.sbr .\Debug\Output.sbr .\Debug\ApplicationManager.sbr .\Debug\main.sbr
+     1>Done Building Project "C:\Users\kabou\Documents\GitHub\Phase-2-project\Phase2 - Code F22\PT-Project.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:04.15
+Time Elapsed 00:00:04.31

@@ -23,6 +23,7 @@
 #include "Actions\MoveAction.h"
 #include "Actions\SaveAction.h"
 #include "Actions\LoadAction.h"
+#include "Actions\PickByTypeAction.h"
 
 //Main class that manages everything in the application.
 class ApplicationManager
