@@ -14,9 +14,17 @@ void PlayRecordAction::ReadActionParameters()
 void PlayRecordAction::Execute(bool w)
 {
 	Output* pOut = pManager->GetOutput();
-	pOut->ClearDrawArea();
-	pManager->deleteallfigure();
-	pManager->excuteplayactions();
+	bool pl = pManager->getplay();
+	bool st = pManager->getstop();
+	if (pl && st)
+	{
+		pOut->ClearDrawArea();
+		pManager->deleteallfigure();
+		pManager->excuteplayactions();
+	}
+	else
+		pOut->PrintMessage("ERROR  <you must start recording and stop it>");
+
 }
 
 bool PlayRecordAction::isrecord()

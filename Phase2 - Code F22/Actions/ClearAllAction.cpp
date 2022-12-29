@@ -19,7 +19,7 @@ void ClearAllAction::Execute(bool w)
 {
 	Output* pOut = pManager->GetOutput();
 	pOut->ClearDrawArea();
-	pManager->deleteallfigure();
+	pManager->clearallfigure();
 }
 
 bool ClearAllAction::isrecord()

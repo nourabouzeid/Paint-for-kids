@@ -39,7 +39,7 @@ private:
 	int FigCount, f, ID, actnum;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 	Action* act[20];
-	bool recording;
+	bool recording, play, stop;
 
 	CFigure* SelectedFig; //Pointer to the selected figure
 	Action* lastaction;
@@ -62,11 +62,19 @@ public:
 	CFigure* GetFigure(Point p) const; //Search for a figure given a point inside the figure
 	void setselectedfigure(CFigure* cf);
 	color getcolor();
-	void deleteallfigure();
+	void clearallfigure();
 	CFigure* getselectedfigure();
 	void setlastaction(Action* act);
 	void excuteplayactions();
+	void deleteallfigure();
 	Action* getlastaction();
+	void setrecording(bool rec);
+	bool getrecording();
+	void setplay(bool rec);
+	bool getplay();
+	void setstop(bool rec);
+	bool getstop();
+	int getfigcount();
 	void deletefigure(CFigure* cf1);
 	void MOVEE(Point p) const;
 	void SaveAll(ofstream& Fout);

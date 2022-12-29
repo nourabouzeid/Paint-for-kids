@@ -13,6 +13,8 @@ ApplicationManager::ApplicationManager()
 	FigCount = 0;
 	startrecord = NULL;
 	recording = false;
+	play = false;
+	stop = false;
 	f = 0;
 	ID=1;
 		
@@ -135,11 +137,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case STARTRECORDING:
 			pAct = new StartAction(this);
 			startrecord = pAct;
-			recording = true;
 			break;
 		case STOPRECORDING:
 			pAct = new StopAction(this);
-			recording = false;
 			break;
 		case PLAYRECORDING:
 			pAct = new PlayRecordAction(this);
@@ -170,13 +170,19 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 //						Figures Management Functions								//
 //==================================================================================//
 
-void ApplicationManager::deleteallfigure()
+void ApplicationManager::clearallfigure()
 {
 	for (int i = 0; i < FigCount; i++)
 	{
 		delete FigList[i];
 		FigList[i] = NULL;
 	}
+	for (int i = 0; i < actnum; i++)
+	{
+		delete act[i];
+		act[i] = NULL;
+	}
+	actnum = 0;
 	FigCount = 0;
 	SelectedFig = NULL;
 }
@@ -184,6 +190,41 @@ void ApplicationManager::deleteallfigure()
 Action* ApplicationManager::getlastaction()
 {
 	return lastaction;
+}
+
+void ApplicationManager::setrecording(bool rec)
+{
+	recording = rec;
+}
+
+bool ApplicationManager::getrecording()
+{
+	return recording;
+}
+
+void ApplicationManager::setplay(bool rec)
+{
+	play = rec;
+}
+
+bool ApplicationManager::getplay()
+{
+	return play;
+}
+
+void ApplicationManager::setstop(bool rec)
+{
+	stop = rec;
+}
+
+bool ApplicationManager::getstop()
+{
+	return stop;
+}
+
+int ApplicationManager::getfigcount()
+{
+	return FigCount;
 }
 
 void ApplicationManager::deletefigure(CFigure* cf1)
@@ -269,6 +310,17 @@ void ApplicationManager::excuteplayactions()
 		pOut->ClearDrawArea();
 		UpdateInterface();
 	}
+}
+
+void ApplicationManager::deleteallfigure()
+{
+	for (int i = 0; i < FigCount; i++)
+	{
+		delete FigList[i];
+		FigList[i] = NULL;
+	}
+	FigCount = 0;
+	SelectedFig = NULL;
 }
 
 CFigure* ApplicationManager::GetFigure(Point p) const

@@ -18,6 +18,8 @@ void StopAction::Execute(bool w)
 {
 	if (w)
     ReadActionParameters();
+	pManager->setrecording(false);
+	pManager->setstop(true);
 }
 
 bool StopAction::isrecord()

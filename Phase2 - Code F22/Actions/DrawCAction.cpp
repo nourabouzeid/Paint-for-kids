@@ -10,12 +10,14 @@ DrawCAction::DrawCAction(ApplicationManager* pApp) :Action(pApp)
 
 void DrawCAction::ReadActionParameters()
 {
+	c = pManager->getcolor();
 }
 
 void DrawCAction::Execute(bool w)
 {
+	if(w)
+	ReadActionParameters();
 	CFigure* cf1;
-	c = pManager->getcolor();
 	cf1=pManager->getselectedfigure();
 	if(cf1)
 	cf1->ChngDrawClr(c);
