@@ -47,11 +47,20 @@ void CCircle::Save(ofstream&Fout)
 }
 void CCircle::Load(ifstream&Fin)
 {
-
+	Fin>>ID;
 	string dclr,fclr;
 	Fin>>midd.x>>midd.y>>radius.x>>radius.y>>dclr>>fclr;
 	FigGfxInfo.DrawClr=stringtoclr(dclr);
-	FigGfxInfo.FillClr=stringtoclr(fclr);
+	if(fclr=="NO_FILL")
+	{
+		FigGfxInfo.FillClr=UI.FillColor;
+		FigGfxInfo.isFilled=false;
+	}
+	else
+	{
+		FigGfxInfo.FillClr=stringtoclr(fclr);
+		FigGfxInfo.isFilled=true;
+	}
 }
 string CCircle::figurename()
 {

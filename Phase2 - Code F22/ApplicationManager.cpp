@@ -134,6 +134,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case PICKWITHTYPE:
 			pAct=new PickByTypeAction(this);
 			break;
+		case PICKWITHCOLOR:
+			pAct=new PickByColorAction(this);
+			break;
+		case PICKWITHTYPEANDCOLOR:
+			pAct=new PickByColorAndTypeAction(this);
+			break;
 		case CLEAR:
 			pAct = new ClearAllAction(this);
 			break;
@@ -149,6 +155,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case DELET:
 			pAct = new DeleteFigureAction(this);
+			break;
 		case EXIT:
 			///create ExitAction here
 			pAct=new ExitAction(this);

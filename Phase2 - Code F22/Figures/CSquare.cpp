@@ -53,7 +53,16 @@ void CSquare::Load(ifstream&Fin)
 	Fin>>ID;
 	Fin>>midd.x>>midd.y>>dclr>>fclr;
 	FigGfxInfo.DrawClr=stringtoclr(dclr);
-	FigGfxInfo.FillClr=stringtoclr(fclr);
+	if(fclr=="NO_FILL")
+	{
+		FigGfxInfo.FillClr=UI.FillColor;
+		FigGfxInfo.isFilled=false;
+	}
+	else
+	{
+		FigGfxInfo.FillClr=stringtoclr(fclr);
+		FigGfxInfo.isFilled=true;
+	}
 }
 string CSquare::figurename()
 {

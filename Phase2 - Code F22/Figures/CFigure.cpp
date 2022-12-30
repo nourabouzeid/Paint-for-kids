@@ -73,3 +73,7 @@ color CFigure::stringtoclr(string s)
 	}
 	return clr;
 }
+GfxInfo CFigure::getGfxInfo()
+{
+	return FigGfxInfo;
+}

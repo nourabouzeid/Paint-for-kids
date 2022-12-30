@@ -25,6 +25,8 @@ void PickByTypeAction::Execute(bool w)
 	ReadActionParameters();
 	Output* pOut = pManager->GetOutput();
 	Input* pIn=pOut->CreateInput();
+	pOut->ClearDrawArea();
+	pManager->deleteallfigure();
 	Fin.open("PlayMode.txt");
 	for(int j=0;j<5;j++)
 		count[j]=0;
@@ -32,6 +34,9 @@ void PickByTypeAction::Execute(bool w)
 	{
 		if(fig=="RECTANGLE")
 		{
+			CRectangle* rect=new CRectangle();
+			rect->Load(Fin);
+			pManager->AddFigure(rect);
 			if(fr)
 			{
 				r=i;
@@ -42,7 +47,10 @@ void PickByTypeAction::Execute(bool w)
 		}
 		if(fig=="CIRCLE")
 		{
-			if(fc)
+			CCircle* circle=new CCircle();
+			circle->Load(Fin);
+			pManager->AddFigure(circle);
+				if(fc)
 			{
 				c=i;
 				random[i++]=fig;
@@ -52,6 +60,9 @@ void PickByTypeAction::Execute(bool w)
 		}
 		if(fig=="SQUARE")
 		{
+			CSquare* square=new CSquare();
+			square->Load(Fin);
+			pManager->AddFigure(square);
 			if(fs)
 			{
 				s=i;
@@ -62,6 +73,9 @@ void PickByTypeAction::Execute(bool w)
 		}
 		if(fig=="HEXAGON")
 		{
+			CHex* Hex=new CHex();
+			Hex->Load(Fin);
+			pManager->AddFigure(Hex);
 			if(fh)
 			{
 				h=i;
@@ -72,6 +86,9 @@ void PickByTypeAction::Execute(bool w)
 		}
 		if(fig=="TRIANGLE")
 		{
+			CTriangle* triangle=new CTriangle();
+			triangle->Load(Fin);
+			pManager->AddFigure(triangle);
 			if(ft)
 			{
 				t=i;
@@ -81,6 +98,7 @@ void PickByTypeAction::Execute(bool w)
 			count[t]++;
 		}
 	}
+	pManager->UpdateInterface();
 	if(i==0)
 	{
 		pOut->PrintMessage("No Figures to Pick From");

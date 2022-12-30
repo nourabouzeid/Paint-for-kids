@@ -33,6 +33,7 @@ public:
 	color stringtoclr(string s);
 	virtual void Load(ifstream&Fin)=0;
 	virtual string figurename()=0;
+	GfxInfo getGfxInfo();
 
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure

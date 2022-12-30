@@ -26,6 +26,8 @@
 #include "Actions\SaveAction.h"
 #include "Actions\LoadAction.h"
 #include "Actions\PickByTypeAction.h"
+#include "Actions\PickByColorAction.h"
+#include "Actions\PickByColorAndTypeAction.h"
 #include "Actions\StartAction.h"
 #include "Actions\StopAction.h"
 #include "Actions\PlayRecordAction.h"

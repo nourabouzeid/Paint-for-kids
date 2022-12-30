@@ -145,6 +145,8 @@
     <ClCompile Include="Actions\FillCAction.cpp" />
     <ClCompile Include="Actions\LoadAction.cpp" />
     <ClCompile Include="Actions\MoveAction.cpp" />
+    <ClCompile Include="Actions\PickByColorAction.cpp" />
+    <ClCompile Include="Actions\PickByColorAndTypeAction.cpp" />
     <ClCompile Include="Actions\PickByTypeAction.cpp" />
     <ClCompile Include="Actions\PlayRecordAction.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
@@ -217,6 +219,8 @@
     <ClInclude Include="Actions\FillCAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\MoveAction.h" />
+    <ClInclude Include="Actions\PickByColorAction.h" />
+    <ClInclude Include="Actions\PickByColorAndTypeAction.h" />
     <ClInclude Include="Actions\PickByTypeAction.h" />
     <ClInclude Include="Actions\PlayRecordAction.h" />
     <ClInclude Include="Actions\SaveAction.h" />
