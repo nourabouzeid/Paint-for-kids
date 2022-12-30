@@ -96,7 +96,7 @@ ActionType Input::GetUserAction() const
 				case ITM_PHT:		return PICKWITHTYPE;
 				case ITM_PHC:		return PICKWITHCOLOR;
 				case ITM_PHB:		return PICKWITHTYPEANDCOLOR;
-				case ITM_SWITCHD:	return TO_DRAW;
+				case ITM_SWITCHD:	return TO_DRAW1;
 				case ITM_EXITb:     return EXIT;
 				default: return EMPTY;	//A click on empty place in desgin toolbar
 			}
@@ -132,7 +132,7 @@ ActionType Input::GetUserAction() const
 			case ITM_HEX:		return DRAW_HEXA;
 			case ITM_CIR:		return DRAW_CIRCLE;
 			case ITM_TRG:		return DRAW_TRIANGLE;
-			case ITM_SWTMD1:	return TO_DRAW;
+			case ITM_SWTMD1:	return TO_DRAW2;
 			default: return EMPTY;	//A click on empty place in desgin toolbar
 			}
 		}
@@ -165,7 +165,7 @@ ActionType Input::GetUserAction() const
 		case ITM_RED1:		return RED_COLOR;
 		case ITM_GRN1:		return GREEN_COLOR;
 		case ITM_BLUE1: 		return BLUE_COLOR;
-		case ITM_SWTMD2:	return TO_DRAW;
+		case ITM_SWTMD2:	return TO_DRAW2;
 		default: return EMPTY;	//A click on empty place in desgin toolbar
 		}
 	}
@@ -198,7 +198,7 @@ ActionType Input::GetUserAction() const
 		case ITM_RED:		return RED_COLOR;
 		case ITM_GRN:		return GREEN_COLOR;
 		case ITM_BLUE: 		return BLUE_COLOR;
-		case ITM_SWTMD3:	return TO_DRAW;
+		case ITM_SWTMD3:	return TO_DRAW2;
 		default: return EMPTY;	//A click on empty place in desgin toolbar
 		}
 	}

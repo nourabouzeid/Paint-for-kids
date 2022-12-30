@@ -32,7 +32,8 @@ enum ActionType //The actions supported (you can add more if needed)
 	SAVE,			//save
 	LOAD,			//load
 	EXIT,			//Exit
-	TO_DRAW,		//Switch interface to Draw mode
+	TO_DRAW1,		//Switch interface to Draw mode
+	TO_DRAW2,
 	TO_PLAY,		//Switch interface to Play mode
 	EMPTY,			//A click on empty place in the toolbar
 	DRAWING_AREA,	//A click on the drawing area

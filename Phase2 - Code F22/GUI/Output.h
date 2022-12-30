@@ -30,7 +30,7 @@ public:
 	void Drawcircle(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected = false) const;  //Draw a circle
 	///Make similar functions for drawing all other figure types.
 	
-	void PrintMessage(string msg) const;	//Print a message on Status bar
+	void PrintMessage(string msg) const; //Print a message on Status bar
 
 	color getCrntDrawColor() const;	//get current drwawing color
 	color getCrntFillColor() const;	//get current filling color

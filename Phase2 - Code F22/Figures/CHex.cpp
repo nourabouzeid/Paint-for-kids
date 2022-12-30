@@ -62,3 +62,7 @@ void CHex::Load(ifstream&Fin)
 	FigGfxInfo.DrawClr=stringtoclr(dclr);
 	FigGfxInfo.FillClr=stringtoclr(fclr);
 }
+string CHex::figurename()
+{
+	return "HEXAGON";
+}

@@ -63,8 +63,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case SELECT:
 			pAct = new SelectAction(this);
 			break;
-		case TO_DRAW:
+		case TO_DRAW1:
 			pAct = new CreateDToolbarAction(this);
+			break;
+		case TO_DRAW2:
+			pAct = new CreateDToolbar2Action(this);
 			break;
 		case DRAW_COLOR:
 			pAct = new CreatDAction(this);
@@ -148,7 +151,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new DeleteFigureAction(this);
 		case EXIT:
 			///create ExitAction here
-			
+			pAct=new ExitAction(this);
 			break;
 		
 		case STATUS:	//a click on the status bar ==> no action

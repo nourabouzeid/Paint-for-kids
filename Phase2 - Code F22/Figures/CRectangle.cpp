@@ -61,4 +61,8 @@ void CRectangle::Load(ifstream&Fin)
 	FigGfxInfo.DrawClr=stringtoclr(dclr);
 	FigGfxInfo.FillClr=stringtoclr(fclr);
 }
+string CRectangle::figurename()
+{
+	return "RECTANGLE";
+}
 

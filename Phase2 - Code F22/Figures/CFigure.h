@@ -31,7 +31,8 @@ public:
 	virtual void Save(ofstream&Fout)=0;
 	string clrtostring(color clr);
 	color stringtoclr(string s);
-	void Load(ifstream&Fin);
+	virtual void Load(ifstream&Fin)=0;
+	virtual string figurename()=0;
 
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure

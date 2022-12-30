@@ -14,4 +14,5 @@ public:
 	void move(Point p1);
 	virtual void Save(ofstream&Fout);
 	virtual void Load(ifstream&Fin);
+	virtual string figurename();
 };

@@ -18,6 +18,7 @@
 #include "Actions\CreatDAction.h"
 #include "Actions\CreatFAction.h"
 #include "Actions\CreateDToolbarAction.h"
+#include "Actions\CreateDToolbar2Action.h"
 #include "Actions\CreatePToolbarAction.h"
 #include "Actions\CreatFigureAction.h"
 #include "Actions\DeleteFigureAction.h"
@@ -28,6 +29,7 @@
 #include "Actions\StartAction.h"
 #include "Actions\StopAction.h"
 #include "Actions\PlayRecordAction.h"
+#include "Actions\ExitAction.h"
 
 //Main class that manages everything in the application.
 class ApplicationManager

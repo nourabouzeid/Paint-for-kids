@@ -61,3 +61,7 @@ void CTriangle::Load(ifstream&Fin)
 	FigGfxInfo.DrawClr=stringtoclr(dclr);
 	FigGfxInfo.FillClr=stringtoclr(fclr);
 }
+string CTriangle::figurename()
+{
+	return "TRIANGLE";
+}

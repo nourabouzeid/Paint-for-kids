@@ -3,6 +3,8 @@
 class CreateDToolbarAction :   public Action
 {
 private:
+	ifstream Fin;
+	string fig;
 public:
 	CreateDToolbarAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();

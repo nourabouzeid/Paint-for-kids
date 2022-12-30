@@ -55,3 +55,7 @@ void CSquare::Load(ifstream&Fin)
 	FigGfxInfo.DrawClr=stringtoclr(dclr);
 	FigGfxInfo.FillClr=stringtoclr(fclr);
 }
+string CSquare::figurename()
+{
+	return "SQUARE";
+}

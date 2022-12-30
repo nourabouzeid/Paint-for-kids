@@ -47,9 +47,13 @@ void CCircle::Save(ofstream&Fout)
 }
 void CCircle::Load(ifstream&Fin)
 {
+
 	string dclr,fclr;
-	Fin>>ID;
 	Fin>>midd.x>>midd.y>>radius.x>>radius.y>>dclr>>fclr;
 	FigGfxInfo.DrawClr=stringtoclr(dclr);
 	FigGfxInfo.FillClr=stringtoclr(fclr);
+}
+string CCircle::figurename()
+{
+	return "CIRCLE";
 }

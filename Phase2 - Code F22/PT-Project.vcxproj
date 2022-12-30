@@ -17,7 +17,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -134,12 +134,14 @@
     <ClCompile Include="Actions\AddTriangleAction.cpp" />
     <ClCompile Include="Actions\ClearAllAction.cpp" />
     <ClCompile Include="Actions\CreatDAction.cpp" />
+    <ClCompile Include="Actions\CreateDToolBar2Action.cpp" />
     <ClCompile Include="Actions\CreateDToolbarAction.cpp" />
     <ClCompile Include="Actions\CreatePToolbarAction.cpp" />
     <ClCompile Include="Actions\CreatFAction.cpp" />
     <ClCompile Include="Actions\CreatFigureAction.cpp" />
     <ClCompile Include="Actions\DeleteFigureAction.cpp" />
     <ClCompile Include="Actions\DrawCAction.cpp" />
+    <ClCompile Include="Actions\ExitAction.cpp" />
     <ClCompile Include="Actions\FillCAction.cpp" />
     <ClCompile Include="Actions\LoadAction.cpp" />
     <ClCompile Include="Actions\MoveAction.cpp" />
@@ -204,12 +206,14 @@
     <ClInclude Include="Actions\AddTriangleAction.h" />
     <ClInclude Include="Actions\ClearAllAction.h" />
     <ClInclude Include="Actions\CreatDAction.h" />
+    <ClInclude Include="Actions\CreateDToolBar2Action.h" />
     <ClInclude Include="Actions\CreateDToolbarAction.h" />
     <ClInclude Include="Actions\CreatePToolbarAction.h" />
     <ClInclude Include="Actions\CreatFAction.h" />
     <ClInclude Include="Actions\CreatFigureAction.h" />
     <ClInclude Include="Actions\DeleteFigureAction.h" />
     <ClInclude Include="Actions\DrawCAction.h" />
+    <ClInclude Include="Actions\ExitAction.h" />
     <ClInclude Include="Actions\FillCAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\MoveAction.h" />
