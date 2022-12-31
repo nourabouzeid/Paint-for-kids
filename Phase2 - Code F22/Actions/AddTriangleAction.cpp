@@ -42,6 +42,8 @@ void AddTriangleAction::ReadActionParameters()
 //Execute the action
 void AddTriangleAction::Execute(bool w)
 {
+	if(pManager->getsound())
+		PlaySound("Triangle.wav",NULL,SND_SYNC);
 	//This action needs to read some parameters first
 	if(w)
 	ReadActionParameters();

@@ -17,6 +17,8 @@ void CreatFigureAction::ReadActionParameters()
 
 void CreatFigureAction::Execute(bool w)
 {
+	if(pManager->getsound())
+		PlaySound("Figures.wav",NULL,SND_SYNC);
 	Output* pOut = pManager->GetOutput();
 	pOut->CreateFigureToolBar();
 }

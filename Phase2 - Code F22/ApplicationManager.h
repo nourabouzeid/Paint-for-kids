@@ -1,6 +1,7 @@
 #ifndef APPLICATION_MANAGER_H
 #define APPLICATION_MANAGER_H
 
+#include <Windows.h>
 #include "DEFS.h"
 #include "Figures\CFigure.h"
 #include "Actions\Action.h"
@@ -34,6 +35,7 @@
 #include "Actions\ExitAction.h"
 #include "Actions\UndoAction.h"
 #include "Actions\RedoAction.h"
+#include "Actions\SoundAction.h"
 
 //Main class that manages everything in the application.
 class ApplicationManager
@@ -48,7 +50,7 @@ private:
 	Action*UndoList[maxundoredocount];
 	Action*RedoList[maxundoredocount];
 	bool recording, play, stop;
-
+	bool sound;
 	CFigure* SelectedFig; //Pointer to the selected figure
 	Action* lastaction;
 	Action* startrecord;
@@ -96,6 +98,8 @@ public:
 	Action* RedoLastAction();	// Get Last Action in RedoList and call function redo inside it
 	void AddToUndoList(Action* pAct); //add actions to undo list
 	bool DeleteLastFig();	//deletes last figure in the figlist
+	bool getsound();
+	void setsound(bool f);
 };
 
 #endif

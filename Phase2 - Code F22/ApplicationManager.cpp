@@ -18,6 +18,7 @@ ApplicationManager::ApplicationManager()
 	play = false;
 	stop = false;
 	f = 0;
+	sound=false;
 	ID=1;
 		
 	//Create an array of figure pointers and set them to NULL		
@@ -168,6 +169,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case REDO:
 			pAct = new RedoAction(this);
 			break;
+		case SOUND:
+			pAct = new SoundAction(this);
+			break;
 		case EXIT:
 			///create ExitAction here
 			pAct=new ExitAction(this);
@@ -226,7 +230,14 @@ void ApplicationManager::clearallfigure()
 	FigCount = 0;
 	SelectedFig = NULL;
 }
-
+bool ApplicationManager::getsound()
+{
+	return sound;
+}
+void ApplicationManager::setsound(bool f)
+{
+	sound=f;
+}
 Action* ApplicationManager::getlastaction()
 {
 	return lastaction;

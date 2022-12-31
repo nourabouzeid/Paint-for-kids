@@ -33,6 +33,8 @@ void AddHexAction::ReadActionParameters()
 //Execute the action
 void AddHexAction::Execute(bool w)
 {
+	if(pManager->getsound())
+		PlaySound("Hexagon.wav",NULL,SND_SYNC);
 	//This action needs to read some parameters first
 	if(w)
 	ReadActionParameters();

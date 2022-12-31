@@ -33,6 +33,8 @@ void AddSqrAction::ReadActionParameters()
 //Execute the action
 void AddSqrAction::Execute(bool w)
 {
+	if(pManager->getsound())
+		PlaySound("Square.wav",NULL,SND_SYNC);
 	//This action needs to read some parameters first
 	if(w)
 	ReadActionParameters();

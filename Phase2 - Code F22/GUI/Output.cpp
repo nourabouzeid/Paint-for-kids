@@ -96,6 +96,7 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_PLAYREC] = "images\\MenuItems\\Menu_Prec.jpg";
 	MenuItemImages[ITM_SAVE] = "images\\MenuItems\\Menu_Save.jpg";	
 	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\Menu_Load.jpg";
+	MenuItemImages[ITM_SOUND] = "images\\MenuItems\\Menu_Sound.jpg";
 	MenuItemImages[ITM_SWITCHP] = "images\\MenuItems\\Menu_Play.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
 

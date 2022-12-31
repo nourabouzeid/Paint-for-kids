@@ -152,6 +152,7 @@
     <ClCompile Include="Actions\RedoAction.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\SelectAction.cpp" />
+    <ClCompile Include="Actions\SoundAction.cpp" />
     <ClCompile Include="Actions\StartAction.cpp" />
     <ClCompile Include="Actions\StopAction.cpp" />
     <ClCompile Include="Actions\UndoAction.cpp" />
@@ -220,6 +221,7 @@
     <ClInclude Include="Actions\ExitAction.h" />
     <ClInclude Include="Actions\FillCAction.h" />
     <ClInclude Include="Actions\RedoAction.h" />
+    <ClInclude Include="Actions\SoundAction.h" />
     <ClInclude Include="Actions\UndoAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\MoveAction.h" />

@@ -65,6 +65,7 @@ ActionType Input::GetUserAction() const
 				case ITM_PLAYREC:	return PLAYRECORDING;
 				case ITM_SAVE:		return SAVE;
 				case ITM_LOAD:		return LOAD;
+				case ITM_SOUND:     return SOUND;
 				case ITM_SWITCHP:	return TO_PLAY;
 				case ITM_EXIT:		return EXIT;	
 				default: return EMPTY;	//A click on empty place in desgin toolbar

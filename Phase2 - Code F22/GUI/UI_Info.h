@@ -69,6 +69,7 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_PLAYREC,
 	ITM_SAVE,
 	ITM_LOAD,
+	ITM_SOUND,
 	ITM_SWITCHP,
 	//TODO: Add more items names here
 
