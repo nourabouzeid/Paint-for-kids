@@ -55,7 +55,10 @@ bool AddCircleAction::isrecord()
 
 void AddCircleAction::undo() 
 {
+	Output* pOut = pManager->GetOutput();
+	pOut->ClearDrawArea();
 	pManager->deletefigure(C);
+	pManager->UpdateInterface();
 	pManager->GetOutput()->PrintMessage("Undo Drawing Circle");
 }
 

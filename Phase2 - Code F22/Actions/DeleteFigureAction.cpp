@@ -17,16 +17,17 @@ void DeleteFigureAction::ReadActionParameters()
 
 void DeleteFigureAction::Execute(bool w)
 {
-	CFigure* cf;
 	Output* pOut = pManager->GetOutput();
 	pOut->ClearDrawArea();
-	cf= pManager->getselectedfigure();
-	pManager->deletefigure(cf);
+	Fig= pManager->getselectedfigure();
+	pManager->deletefigure(Fig);
 }
 
 bool DeleteFigureAction::isrecord()
 {
 	return true;
 }
- void DeleteFigureAction::undo(){}
+ void DeleteFigureAction::undo()
+ {	
+ }
  void DeleteFigureAction::redo(){}

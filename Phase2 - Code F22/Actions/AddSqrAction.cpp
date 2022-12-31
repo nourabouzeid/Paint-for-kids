@@ -38,10 +38,9 @@ void AddSqrAction::Execute(bool w)
 	ReadActionParameters();
 
 	//Create a rectangle with the parameters read from the user
-	CSquare* R = new CSquare(P1, RectGfxInfo);
-	PSqar=new CSquare(P1, RectGfxInfo);
+	Squr=new CSquare(P1, RectGfxInfo);
 	//Add the rectangle to the list of figures
-	pManager->AddFigure(R);
+	pManager->AddFigure(Squr);
 }
 
 bool AddSqrAction::isrecord()
@@ -50,12 +49,17 @@ bool AddSqrAction::isrecord()
 }
 void AddSqrAction::undo() 
 {
-	pManager->deletefigure(PSqar);
+	Output* pOut = pManager->GetOutput();
+	pOut->ClearDrawArea();
+	pManager->deletefigure(Squr);
+	pManager->UpdateInterface();
+	pManager->GetOutput()->PrintMessage("Undo Drawing Square");
 }
 
 void AddSqrAction::redo() 
 {
 
-	pManager->AddFigure(PSqar);
+	pManager->AddFigure(Squr);
+	pManager->GetOutput()->PrintMessage("Redo Drawing Square");
 }
 

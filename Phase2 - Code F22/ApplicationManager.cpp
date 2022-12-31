@@ -180,9 +180,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	//Execute the created action
 	if (pAct != NULL)
 	{
-		if ( pOut->GetInterfaceMode() == (MODE_DRAW||MODE_FIG||MODE_DRAWCOLOR||MODE_FILLCOLOR) )
+		if ( pOut->GetInterfaceMode()!=MODE_PLAY )
 		{
-			if (ActType != SAVE && ActType != LOAD  && ActType != UNDO && ActType != REDO && ActType != EXIT && ActType != SELECT)
+			if (ActType == DRAW_RECT || ActType == DRAW_SQUARE  || ActType == DRAW_HEXA || ActType == DRAW_CIRCLE || ActType == DRAW_TRIANGLE || ActType == BLACK_COLOR || ActType == YELLOW_COLOR || ActType == ORANGE_COLOR || ActType == RED_COLOR || ActType == GREEN_COLOR || ActType == BLUE_COLOR || ActType == MOVE || ActType == CLEAR || ActType == DELET)
 			{
 				AddToUndoList(pAct);
 
@@ -190,6 +190,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 				{
 					for (int i = 0; i < maxundoredocount; i++)
 					{
+						delete RedoList[i];
 						RedoList[i]=NULL;
 					}
 				}
@@ -402,8 +403,7 @@ void ApplicationManager::SaveAll(ofstream& Fout)
 		GetOutput()->PrintMessage("No Action to undo");
 		return NULL;
 		}
-	Action* lastAct = UndoList[undocount];
-	delete UndoList[undocount];
+	Action* lastAct = UndoList[undocount--];
 	UndoList[undocount--]=NULL;
 	RedoList[redocount++]=lastAct;
 	return lastAct;
@@ -415,8 +415,7 @@ void ApplicationManager::SaveAll(ofstream& Fout)
 			GetOutput()->PrintMessage("No Action to redo");
 			return NULL;
 		}
-	Action* lastAct = RedoList[redocount];
-	delete RedoList[redocount];
+	Action* lastAct = RedoList[redocount--];
 	RedoList[redocount--]=NULL;
 	UndoList[undocount++]=lastAct;
 	return lastAct;
@@ -430,19 +429,13 @@ void ApplicationManager::SaveAll(ofstream& Fout)
 			{
 				UndoList[i]=UndoList[i+1];
 			}
+			UndoList[undocount++]=pAct;
 		}
-	UndoList[undocount]=pAct;
-	undocount++;
+		else 
+		{
+			UndoList[undocount++]=pAct;
+		}
 	return;
-	}
-	bool ApplicationManager::DeleteLastFig()
-	{
-	if (FigCount == 0)
-		return false;
-	delete FigList[FigCount - 1];
-	FigList[FigCount - 1] = NULL;
-	FigCount--;
-	return true;
 	}
 ////////////////////////////////////////////////////////////////////////////////////
 //Destructor

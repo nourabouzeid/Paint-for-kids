@@ -9,7 +9,7 @@ class AddSqrAction : public Action
 private:
 	Point P1;
 	GfxInfo RectGfxInfo;
-	CSquare*PSqar;
+	CFigure* Squr;
 public:
 	AddSqrAction(ApplicationManager* pApp);
 

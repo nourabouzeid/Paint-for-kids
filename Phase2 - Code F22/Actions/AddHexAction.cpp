@@ -38,10 +38,9 @@ void AddHexAction::Execute(bool w)
 	ReadActionParameters();
 
 	//Create a rectangle with the parameters read from the user
-	CHex* R = new CHex(P1, RectGfxInfo);
-	PHexagon= new CHex(P1, RectGfxInfo);
+	Hex = new CHex(P1, RectGfxInfo);
 	//Add the rectangle to the list of figures
-	pManager->AddFigure(R);
+	pManager->AddFigure(Hex);
 }
 
 bool AddHexAction::isrecord()
@@ -50,11 +49,16 @@ bool AddHexAction::isrecord()
 }
 void AddHexAction::undo() 
 {
-	pManager->deletefigure(PHexagon);
+	Output* pOut = pManager->GetOutput();
+	pOut->ClearDrawArea();
+	pManager->deletefigure(Hex);
+	pManager->UpdateInterface();
+	pManager->GetOutput()->PrintMessage("Undo Drawing Hexagon");
 }
 
 void AddHexAction::redo() 
 {
 
-	pManager->AddFigure(PHexagon);
+	pManager->AddFigure(Hex);
+	pManager->GetOutput()->PrintMessage("Redo Drawing Hexagon");
 }

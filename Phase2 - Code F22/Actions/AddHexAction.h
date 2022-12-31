@@ -8,7 +8,7 @@ class AddHexAction : public Action
 private:
 	Point P1; //Rectangle Corners
 	GfxInfo RectGfxInfo;
-	CHex*PHexagon;
+	CFigure* Hex;
 public:
 	AddHexAction(ApplicationManager* pApp);
 
