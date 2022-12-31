@@ -38,3 +38,5 @@ bool SaveAction::isrecord()
 {
 	return false;
 }
+void SaveAction::undo(){}
+void SaveAction::redo(){}

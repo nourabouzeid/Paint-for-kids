@@ -25,3 +25,5 @@ bool CreatFAction::isrecord()
 {
 	return true;
 }
+ void CreatFAction::undo(){}
+ void CreatFAction::redo(){}

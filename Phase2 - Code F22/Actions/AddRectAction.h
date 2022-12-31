@@ -18,6 +18,8 @@ public:
 	//Add rectangle to the ApplicationManager
 	virtual void Execute(bool w = true);
 	bool isrecord();
+	virtual void undo();
+	virtual void redo();
 };
 
 #endif

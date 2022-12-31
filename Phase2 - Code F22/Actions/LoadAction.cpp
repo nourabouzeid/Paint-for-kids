@@ -65,3 +65,5 @@ bool LoadAction::isrecord()
 {
 	return false;
 }
+ void LoadAction::undo(){}
+ void LoadAction::redo(){}

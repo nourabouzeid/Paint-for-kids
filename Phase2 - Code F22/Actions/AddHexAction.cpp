@@ -39,7 +39,7 @@ void AddHexAction::Execute(bool w)
 
 	//Create a rectangle with the parameters read from the user
 	CHex* R = new CHex(P1, RectGfxInfo);
-
+	PHexagon= new CHex(P1, RectGfxInfo);
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(R);
 }
@@ -47,4 +47,14 @@ void AddHexAction::Execute(bool w)
 bool AddHexAction::isrecord()
 {
 	return true;
+}
+void AddHexAction::undo() 
+{
+	pManager->deletefigure(PHexagon);
+}
+
+void AddHexAction::redo() 
+{
+
+	pManager->AddFigure(PHexagon);
 }

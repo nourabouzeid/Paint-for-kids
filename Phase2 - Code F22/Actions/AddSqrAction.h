@@ -9,6 +9,7 @@ class AddSqrAction : public Action
 private:
 	Point P1;
 	GfxInfo RectGfxInfo;
+	CSquare*PSqar;
 public:
 	AddSqrAction(ApplicationManager* pApp);
 
@@ -18,6 +19,8 @@ public:
 	//Add rectangle to the ApplicationManager
 	virtual void Execute(bool w = true);
 	bool isrecord();
+	virtual void undo();
+	virtual void redo();
 };
 
 #endif

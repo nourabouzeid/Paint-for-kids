@@ -48,7 +48,7 @@ void AddTriangleAction::Execute(bool w)
 
 	//Create a rectangle with the parameters read from the user
 	CTriangle* R = new CTriangle(P1, P2, P3, RectGfxInfo);
-
+	PTriangle= new CTriangle(P1, P2, P3, RectGfxInfo);
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(R);
 }
@@ -56,4 +56,14 @@ void AddTriangleAction::Execute(bool w)
 bool AddTriangleAction::isrecord()
 {
 	return true;
+}
+void AddTriangleAction::undo() 
+{
+	pManager->deletefigure(PTriangle);
+}
+
+void AddTriangleAction::redo() 
+{
+
+	pManager->AddFigure(PTriangle);
 }

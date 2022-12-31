@@ -27,3 +27,5 @@ bool DrawCAction::isrecord()
 {
 	return true;
 }
+ void DrawCAction::undo(){}
+ void DrawCAction::redo(){}

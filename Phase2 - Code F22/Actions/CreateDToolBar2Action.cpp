@@ -25,3 +25,5 @@ bool CreateDToolbar2Action::isrecord()
 {
 	return true;
 }
+ void CreateDToolbar2Action::undo(){}
+ void CreateDToolbar2Action::redo(){}

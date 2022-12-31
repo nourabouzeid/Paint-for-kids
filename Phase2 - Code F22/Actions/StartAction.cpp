@@ -40,4 +40,6 @@ bool StartAction::isrecord()
 {
 	return false;
 }
+void StartAction::undo(){}
+void StartAction::redo(){}
 

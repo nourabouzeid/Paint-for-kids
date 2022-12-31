@@ -32,17 +32,21 @@
 #include "Actions\StopAction.h"
 #include "Actions\PlayRecordAction.h"
 #include "Actions\ExitAction.h"
+#include "Actions\UndoAction.h"
+#include "Actions\RedoAction.h"
 
 //Main class that manages everything in the application.
 class ApplicationManager
 {
-	enum { MaxFigCount = 200 };	//Max no of figures
+	enum { MaxFigCount = 200 ,maxundoredocount=5};	//Max no of figures
 
 private:
 	color c1;
-	int FigCount, f, ID, actnum;		//Actual number of figures
+	int FigCount, f, ID, actnum,undocount, redocount;	//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 	Action* act[20];
+	Action*UndoList[maxundoredocount];
+	Action*RedoList[maxundoredocount];
 	bool recording, play, stop;
 
 	CFigure* SelectedFig; //Pointer to the selected figure
@@ -72,6 +76,7 @@ public:
 	void excuteplayactions();
 	void deleteallfigure();
 	Action* getlastaction();
+	
 	void setrecording(bool rec);
 	bool getrecording();
 	void setplay(bool rec);
@@ -87,6 +92,10 @@ public:
 	Output *GetOutput() const; //Return pointer to the output
 	void UpdateInterface() const;	//Redraws all the drawing window	
 	string clrtostring(color clr);
+	Action* UndoLastAction();	// Get Last Action in UndoList and call function undo inside it
+	Action* RedoLastAction();	// Get Last Action in RedoList and call function redo inside it
+	void AddToUndoList(Action* pAct); //add actions to undo list
+	bool DeleteLastFig();	//deletes last figure in the figlist
 };
 
 #endif

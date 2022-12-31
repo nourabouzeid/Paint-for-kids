@@ -21,3 +21,5 @@ bool ExitAction::isrecord()
 {
 	return false;
 }
+ void ExitAction::undo(){}
+ void ExitAction::redo(){}

@@ -368,7 +368,10 @@ void Output::Drawcircle(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) 
 
 	pWind->DrawCircle(P1.x,P1.y , w, style);
 }
-
+GUI_MODE Output::GetInterfaceMode()
+{
+	return UI.InterfaceMode;
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////
 Output::~Output()

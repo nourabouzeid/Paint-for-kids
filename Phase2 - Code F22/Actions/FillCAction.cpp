@@ -27,3 +27,5 @@ bool FillCAction::isrecord()
 {
 	return true;
 }
+ void FillCAction::undo(){}
+ void FillCAction::redo(){}

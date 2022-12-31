@@ -42,13 +42,27 @@ void AddCircleAction::Execute(bool w)
 	ReadActionParameters();
 
 	//Create a rectangle with the parameters read from the user
-	CCircle* R = new CCircle(P1, P2, RectGfxInfo);
-
-	//Add the rectangle to the list of figures
-	pManager->AddFigure(R);
+	
+	CCircle* C = new CCircle(P1, P2, RectGfxInfo);
+	PCircle = new CCircle(P1, P2, RectGfxInfo);
+//Add the rectangle to the list of figures
+	pManager->AddFigure(C);
 }
 
 bool AddCircleAction::isrecord()
 {
 	return true;
 }
+
+void AddCircleAction::undo() 
+{
+	pManager->DeleteLastFig();
+	pManager->GetOutput()->PrintMessage("Undo Drawing Circle");
+}
+
+void AddCircleAction::redo() 
+{
+	pManager->AddFigure(PCircle);
+	pManager->GetOutput()->PrintMessage("Redo Drawing Circle");
+}
+

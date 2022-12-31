@@ -8,6 +8,7 @@ class AddCircleAction : public Action
 private:
 	Point P1, P2; //Rectangle Corners
 	GfxInfo RectGfxInfo;
+	CCircle *PCircle;
 public:
 	AddCircleAction(ApplicationManager* pApp);
 
@@ -17,6 +18,8 @@ public:
 	//Add rectangle to the ApplicationManager
 	virtual void Execute(bool w = true);
 	bool isrecord();
+	virtual void undo();
+	virtual void redo();
 
 };
 #endif

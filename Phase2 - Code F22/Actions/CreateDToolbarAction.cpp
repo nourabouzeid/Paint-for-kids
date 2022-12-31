@@ -61,3 +61,5 @@ bool CreateDToolbarAction::isrecord()
 {
 	return true;
 }
+ void CreateDToolbarAction::undo(){}
+ void CreateDToolbarAction::redo(){}

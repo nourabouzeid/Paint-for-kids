@@ -149,10 +149,12 @@
     <ClCompile Include="Actions\PickByColorAndTypeAction.cpp" />
     <ClCompile Include="Actions\PickByTypeAction.cpp" />
     <ClCompile Include="Actions\PlayRecordAction.cpp" />
+    <ClCompile Include="Actions\RedoAction.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\SelectAction.cpp" />
     <ClCompile Include="Actions\StartAction.cpp" />
     <ClCompile Include="Actions\StopAction.cpp" />
+    <ClCompile Include="Actions\UndoAction.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
     <ClCompile Include="CMUgraphicsLib\colors.cpp" />
@@ -217,6 +219,8 @@
     <ClInclude Include="Actions\DrawCAction.h" />
     <ClInclude Include="Actions\ExitAction.h" />
     <ClInclude Include="Actions\FillCAction.h" />
+    <ClInclude Include="Actions\RedoAction.h" />
+    <ClInclude Include="Actions\UndoAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\MoveAction.h" />
     <ClInclude Include="Actions\PickByColorAction.h" />

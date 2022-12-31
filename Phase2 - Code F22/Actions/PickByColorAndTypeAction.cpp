@@ -131,4 +131,5 @@ bool PickByColorAndTypeAction::isrecord()
 {
 	return false;
 }
-
+void PickByColorAndTypeAction::undo(){}
+void PickByColorAndTypeAction::redo(){}

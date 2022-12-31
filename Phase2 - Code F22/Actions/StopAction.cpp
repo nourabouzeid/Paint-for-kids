@@ -26,3 +26,5 @@ bool StopAction::isrecord()
 {
 	return false;
 }
+void StopAction::undo(){}
+void StopAction::redo(){}

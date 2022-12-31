@@ -23,6 +23,8 @@ public:
 	//Execute action (code depends on action type)
 	virtual void Execute(bool w = true) =0;
 	virtual bool isrecord() = 0;
+	virtual void undo()=0;
+	virtual void redo()=0;
 
 };
 

@@ -8,6 +8,7 @@ class AddHexAction : public Action
 private:
 	Point P1; //Rectangle Corners
 	GfxInfo RectGfxInfo;
+	CHex*PHexagon;
 public:
 	AddHexAction(ApplicationManager* pApp);
 
@@ -17,6 +18,8 @@ public:
 	//Add rectangle to the ApplicationManager
 	virtual void Execute(bool w = true);
 	bool isrecord();
+	virtual void undo();
+	virtual void redo();
 };
 #endif
 

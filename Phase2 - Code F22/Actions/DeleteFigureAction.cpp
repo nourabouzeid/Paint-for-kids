@@ -28,3 +28,5 @@ bool DeleteFigureAction::isrecord()
 {
 	return true;
 }
+ void DeleteFigureAction::undo(){}
+ void DeleteFigureAction::redo(){}

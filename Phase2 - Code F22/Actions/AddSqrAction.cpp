@@ -39,7 +39,7 @@ void AddSqrAction::Execute(bool w)
 
 	//Create a rectangle with the parameters read from the user
 	CSquare* R = new CSquare(P1, RectGfxInfo);
-
+	PSqar=new CSquare(P1, RectGfxInfo);
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(R);
 }
@@ -48,3 +48,14 @@ bool AddSqrAction::isrecord()
 {
 	return true;
 }
+void AddSqrAction::undo() 
+{
+	pManager->deletefigure(PSqar);
+}
+
+void AddSqrAction::redo() 
+{
+
+	pManager->AddFigure(PSqar);
+}
+

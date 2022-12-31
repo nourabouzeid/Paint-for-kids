@@ -39,3 +39,5 @@ bool MoveAction::isrecord()
 {
 	return true;
 }
+void MoveAction::undo(){}
+void MoveAction::redo(){}

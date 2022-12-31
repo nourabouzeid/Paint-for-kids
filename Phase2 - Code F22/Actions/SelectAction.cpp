@@ -49,4 +49,6 @@ bool SelectAction::isrecord()
 {
 	return true;
 }
+void SelectAction::undo(){}
+void SelectAction::redo(){}
 

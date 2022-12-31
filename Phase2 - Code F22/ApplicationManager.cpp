@@ -11,6 +11,8 @@ ApplicationManager::ApplicationManager()
 	lastaction = NULL;
 	actnum = 0;
 	FigCount = 0;
+	undocount=0;
+	redocount=0;
 	startrecord = NULL;
 	recording = false;
 	play = false;
@@ -23,6 +25,10 @@ ApplicationManager::ApplicationManager()
 		FigList[i] = NULL;	
 	for (int i = 0; i < 20; i++)
 		act[i] = NULL;
+	for (int i = 0; i < maxundoredocount; i++)
+		UndoList[i] = NULL;
+	for (int i = 0; i < maxundoredocount; i++)
+		RedoList[i] = NULL;
 }
 
 //==================================================================================//
@@ -156,26 +162,48 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case DELET:
 			pAct = new DeleteFigureAction(this);
 			break;
+			case UNDO :
+				pAct = new UndoAction(this);
+			break;
+		case REDO:
+			pAct = new RedoAction(this);
+			break;
 		case EXIT:
 			///create ExitAction here
 			pAct=new ExitAction(this);
 			break;
-		
 		case STATUS:	//a click on the status bar ==> no action
 			return;
 	}
 	pOut->ClearStatusBar();
 	lastaction = pAct;
-
 	//Execute the created action
 	if (pAct != NULL)
 	{
-		pAct->Execute(true);//Execute
+		if ( pOut->GetInterfaceMode() == (MODE_DRAW||MODE_FIG||MODE_DRAWCOLOR||MODE_FILLCOLOR) )
+		{
+			if (ActType != SAVE && ActType != LOAD  && ActType != UNDO && ActType != REDO && ActType != EXIT && ActType != SELECT)
+			{
+				AddToUndoList(pAct);
+
+				if (redocount!=0)
+				{
+					for (int i = 0; i < maxundoredocount; i++)
+					{
+						RedoList[i]=NULL;
+					}
+				}
+			}
+		}
+	}
+	pAct->Execute(true);//Execute
 		if (recording && ActType != STARTRECORDING)
+		{
 			startrecord->Execute(true);
+		}
 		pAct = NULL;
 	}
-}
+
 //==================================================================================//
 //						Figures Management Functions								//
 //==================================================================================//
@@ -278,7 +306,6 @@ color ApplicationManager::getcolor()
 {
 	return c1;
 }
-
 void ApplicationManager::MOVEE(Point p) const
 {
 	if(SelectedFig!=NULL)
@@ -367,6 +394,43 @@ void ApplicationManager::SaveAll(ofstream& Fout)
 	for(int i=0; i<FigCount; i++)
 		FigList[i]->Save(Fout);
 }
+	Action* ApplicationManager::UndoLastAction() 
+	{
+		if (undocount==0) return NULL;
+	Action* lastAct = UndoList[undocount];
+	delete UndoList[undocount--];
+	RedoList[redocount++]=lastAct;
+	return lastAct;
+	}
+	Action* ApplicationManager::RedoLastAction() 
+	{
+		if (redocount==0) return NULL;
+	Action* lastAct = RedoList[redocount];
+	delete UndoList[redocount--];
+	UndoList[undocount++]=lastAct;
+	return lastAct;
+	}
+	void ApplicationManager::AddToUndoList(Action* pAct)
+	{
+		if (undocount == maxundoredocount)
+		{
+			delete UndoList[0];
+			for (int i = 0; i < maxundoredocount-1; i++)
+			{
+				UndoList[i]=UndoList[i+1];
+			}
+		}
+	UndoList[undocount]=pAct;
+	}
+	bool ApplicationManager::DeleteLastFig()
+	{
+	if (FigCount == 0)
+		return false;
+	delete FigList[FigCount - 1];
+	FigList[FigCount - 1] = NULL;
+	FigCount--;
+	return true;
+	}
 ////////////////////////////////////////////////////////////////////////////////////
 //Destructor
 ApplicationManager::~ApplicationManager()
@@ -377,3 +441,4 @@ ApplicationManager::~ApplicationManager()
 	delete pOut;
 	
 }
+

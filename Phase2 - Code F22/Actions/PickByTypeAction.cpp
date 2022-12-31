@@ -135,4 +135,5 @@ bool PickByTypeAction::isrecord()
 {
 	return false;
 }
-
+void PickByTypeAction::undo(){}
+void PickByTypeAction::redo(){}
