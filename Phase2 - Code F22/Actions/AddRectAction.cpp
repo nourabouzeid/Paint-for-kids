@@ -64,7 +64,10 @@ void AddRectAction::undo()
 
 void AddRectAction::redo() 
 {
+	Output* pOut = pManager->GetOutput();
+	pOut->ClearDrawArea();
 	pManager->AddFigure(Rect);
+	pManager->UpdateInterface();
 	pManager->GetOutput()->PrintMessage("Redo Drawing Rectangle");
 
 }

@@ -9,18 +9,19 @@ ApplicationManager::ApplicationManager()
 	pIn = pOut->CreateInput();
 	SelectedFig = NULL;
 	lastaction = NULL;
+	startrecord = NULL;
 	actnum = 0;
 	FigCount = 0;
 	undocount=0;
 	redocount=0;
-	startrecord = NULL;
+	f = 0;
+	ID = 1;
 	recording = false;
 	play = false;
 	stop = false;
-	f = 0;
 	sound=false;
-	ID=1;
 		
+
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
 		FigList[i] = NULL;	
@@ -163,8 +164,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case DELET:
 			pAct = new DeleteFigureAction(this);
 			break;
-			case UNDO :
-				pAct = new UndoAction(this);
+		case UNDO :
+			pAct = new UndoAction(this);
 			break;
 		case REDO:
 			pAct = new RedoAction(this);
@@ -172,13 +173,13 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case SOUND:
 			pAct = new SoundAction(this);
 			break;
-		case EXIT:
-			///create ExitAction here
+		case EXIT:            ///create ExitAction here
 			pAct=new ExitAction(this);
 			break;
 		case STATUS:	//a click on the status bar ==> no action
 			return;
 	}
+
 	pOut->ClearStatusBar();
 	lastaction = pAct;
 	//Execute the created action
@@ -190,16 +191,16 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			{
 				AddToUndoList(pAct);
 
-				if (redocount!=0)
+				if (redocount!=0 && ActType != REDO)
 				{
 					for (int i = 0; i < maxundoredocount; i++)
 					{
 						delete RedoList[i];
 						RedoList[i]=NULL;
 					}
+					redocount = 0;
 				}
 			}
-			
 		}
 	}
 	pAct->Execute(true);//Execute
@@ -214,22 +215,105 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 //						Figures Management Functions								//
 //==================================================================================//
 
-void ApplicationManager::clearallfigure()
-{
-	for (int i = 0; i < FigCount; i++)
+	void ApplicationManager::SaveAll(ofstream& Fout)
 	{
-		delete FigList[i];
-		FigList[i] = NULL;
+		Fout << FigCount << endl;
+		for (int i = 0; i < FigCount; i++)
+			FigList[i]->Save(Fout);
 	}
-	for (int i = 0; i < actnum; i++)
+
+
+	Action* ApplicationManager::UndoLastAction()
 	{
-		delete act[i];
-		act[i] = NULL;
+		if (undocount == 0)
+		{
+			GetOutput()->PrintMessage("No Action to undo");
+			return NULL;
+		}
+		Action* lastAct = UndoList[undocount-1];
+		UndoList[undocount-1] = NULL;
+		RedoList[redocount++] = lastAct;
+		return lastAct;
 	}
-	actnum = 0;
-	FigCount = 0;
-	SelectedFig = NULL;
-}
+	Action* ApplicationManager::RedoLastAction()
+	{
+		if (redocount == 0)
+		{
+			GetOutput()->PrintMessage("No Action to redo");
+			return NULL;
+		}
+		Action* lastAct = RedoList[redocount-1];
+		RedoList[redocount-1] = NULL;
+		UndoList[undocount++] = lastAct;
+		return lastAct;
+	}
+	void ApplicationManager::AddToUndoList(Action* pAct)
+	{
+		if (undocount == maxundoredocount)
+		{
+			delete UndoList[0];
+			for (int i = 0; i < maxundoredocount - 1; i++)
+			{
+				UndoList[i] = UndoList[i + 1];
+			}
+			UndoList[undocount-1] = pAct;
+		}
+		else
+		{
+			UndoList[undocount++] = pAct;
+		}
+	}
+
+	string ApplicationManager::clrtostring(color clr)
+	{
+		string s;
+		if (clr == BLUE)
+			s = "BLUE";
+		if (clr == GREEN)
+			s = "GREEN";
+		if (clr == RED)
+			s = "RED";
+		if (clr == ORANGE)
+			s = "ORANGE";
+		if (clr == YELLOW)
+			s = "YELLOW";
+		if (clr == BLACK)
+			s = "BLACK";
+		return s;
+	}
+
+	void ApplicationManager::MOVEE(Point p) const
+	{
+		if (SelectedFig != NULL)
+			SelectedFig->move(p);
+	}
+
+	//Add a figure to the list of figures
+	void ApplicationManager::AddFigure(CFigure* pFig)
+	{
+		if (pFig->getID() != 0)
+			pFig->setID(ID++);
+		if (FigCount < MaxFigCount)
+			FigList[FigCount++] = pFig;
+
+	}
+
+	void ApplicationManager::excuteplayactions()
+	{
+		for (int i = 0; i < actnum; i++)
+		{
+			Sleep(1000);
+			act[i]->Execute(false);
+			pOut->ClearDrawArea();
+			UpdateInterface();
+		}
+	}
+
+
+//==================================================================================//
+//						      setters and getters								    //
+//==================================================================================//
+
 bool ApplicationManager::getsound()
 {
 	return sound;
@@ -278,6 +362,69 @@ int ApplicationManager::getfigcount()
 	return FigCount;
 }
 
+color ApplicationManager::getcolor()
+{
+	return c1;
+}
+
+void ApplicationManager::setselectedfigure(CFigure* cf)
+{
+	SelectedFig = cf;
+}
+
+CFigure* ApplicationManager::getselectedfigure()
+{
+	return SelectedFig;
+}
+
+void ApplicationManager::setlastaction(Action* Act)
+{
+	if (actnum < 20)
+		act[actnum++] = Act;
+}
+
+CFigure* ApplicationManager::GetFigure(Point p) const
+{
+	for (int i = FigCount - 1; i >= 0; i--)
+	{
+		if (FigList[i]->isinside(p))
+		{
+			return FigList[i];
+		}
+	}
+	return NULL;
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+//==================================================================================//
+//						      Delete functions							            //
+//==================================================================================//
+
+
+void ApplicationManager::clearallfigure()
+{
+	for (int i = 0; i < FigCount; i++)
+	{
+		delete FigList[i];
+		FigList[i] = NULL;
+	}
+	if (!recording )
+	{
+		for (int i = 0; i < actnum; i++)
+		{
+			delete act[i];
+			act[i] = NULL;
+		}
+		actnum = 0;
+		recording = false;
+		play = false;
+		stop = false;
+	}
+	FigCount = 0;
+	SelectedFig = NULL;
+}
+
 void ApplicationManager::deletefigure(CFigure* cf1)
 {
 	CFigure* temp;
@@ -298,69 +445,6 @@ void ApplicationManager::deletefigure(CFigure* cf1)
 		}
 	}
 }
-string ApplicationManager::clrtostring(color clr)
-{	
-	string s;
-	if(clr==BLUE)
-	s="BLUE";
-	if(clr==GREEN)
-	s="GREEN";
-	if(clr==RED)
-	s="RED";
-	if(clr==ORANGE)
-	s="ORANGE";
-	if(clr==YELLOW)
-	s="YELLOW";
-	if(clr==BLACK)
-	s="BLACK";
-	return s;
-}
-color ApplicationManager::getcolor()
-{
-	return c1;
-}
-void ApplicationManager::MOVEE(Point p) const
-{
-	if(SelectedFig!=NULL)
-	SelectedFig->move(p);
-}
-
-//Add a figure to the list of figures
-void ApplicationManager::AddFigure(CFigure* pFig)
-{
-	if(pFig->getID()!=0)
-	pFig->setID(ID++);
-	if(FigCount < MaxFigCount )
-		FigList[FigCount++] = pFig;	
-		
-}
-////////////////////////////////////////////////////////////////////////////////////
-void ApplicationManager::setselectedfigure(CFigure* cf)
-{
-	SelectedFig = cf;
-}
-
-CFigure* ApplicationManager::getselectedfigure()
-{
-	return SelectedFig;
-}
-
-void ApplicationManager::setlastaction(Action* Act)
-{
-	if (actnum < 20)
-		act[actnum++] = Act;
-}
-
-void ApplicationManager::excuteplayactions()
-{
-	for (int i = 0; i < actnum; i++)
-	{
-		Sleep(1000);
-		act[i]->Execute(false);
-		pOut->ClearDrawArea();
-		UpdateInterface();
-	}
-}
 
 void ApplicationManager::deleteallfigure()
 {
@@ -373,17 +457,9 @@ void ApplicationManager::deleteallfigure()
 	SelectedFig = NULL;
 }
 
-CFigure* ApplicationManager::GetFigure(Point p) const
-{
-	for (int i = FigCount-1; i>=0; i--)
-	{
-		if (FigList[i]->isinside(p))
-		{
-			return FigList[i];
-		}
-	}
-	return NULL;
-}
+////////////////////////////////////////////////////////////////////////////////////
+
+
 //==================================================================================//
 //							Interface Management Functions							//
 //==================================================================================//
@@ -401,53 +477,8 @@ Input *ApplicationManager::GetInput() const
 //Return a pointer to the output
 Output *ApplicationManager::GetOutput() const
 {	return pOut; }
-void ApplicationManager::SaveAll(ofstream& Fout)
-{
-	Fout<<FigCount<<endl;
-	for(int i=0; i<FigCount; i++)
-		FigList[i]->Save(Fout);
-}
-	Action* ApplicationManager::UndoLastAction() 
-	{
-		if (undocount==0) 
-		{
-		GetOutput()->PrintMessage("No Action to undo");
-		return NULL;
-		}
-	Action* lastAct = UndoList[undocount--];
-	UndoList[undocount--]=NULL;
-	RedoList[redocount++]=lastAct;
-	return lastAct;
-	}
-	Action* ApplicationManager::RedoLastAction() 
-	{
-		if (redocount==0)
-		{
-			GetOutput()->PrintMessage("No Action to redo");
-			return NULL;
-		}
-	Action* lastAct = RedoList[redocount--];
-	RedoList[redocount--]=NULL;
-	UndoList[undocount++]=lastAct;
-	return lastAct;
-	}
-	void ApplicationManager::AddToUndoList(Action* pAct)
-	{
-		if (undocount == maxundoredocount)
-		{
-			delete UndoList[0];
-			for (int i = 0; i < maxundoredocount-1; i++)
-			{
-				UndoList[i]=UndoList[i+1];
-			}
-			UndoList[undocount++]=pAct;
-		}
-		else 
-		{
-			UndoList[undocount++]=pAct;
-		}
-	return;
-	}
+
+
 ////////////////////////////////////////////////////////////////////////////////////
 //Destructor
 ApplicationManager::~ApplicationManager()

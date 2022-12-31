@@ -60,7 +60,9 @@ void AddHexAction::undo()
 
 void AddHexAction::redo() 
 {
-
+	Output* pOut = pManager->GetOutput();
+	pOut->ClearDrawArea();
 	pManager->AddFigure(Hex);
+	pManager->UpdateInterface();
 	pManager->GetOutput()->PrintMessage("Redo Drawing Hexagon");
 }

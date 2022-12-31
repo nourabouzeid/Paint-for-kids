@@ -60,8 +60,10 @@ void AddSqrAction::undo()
 
 void AddSqrAction::redo() 
 {
-
+	Output* pOut = pManager->GetOutput();
+	pOut->ClearDrawArea();
 	pManager->AddFigure(Squr);
+	pManager->UpdateInterface();
 	pManager->GetOutput()->PrintMessage("Redo Drawing Square");
 }
 

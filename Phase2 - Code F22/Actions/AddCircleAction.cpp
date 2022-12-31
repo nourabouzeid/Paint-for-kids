@@ -66,7 +66,10 @@ void AddCircleAction::undo()
 
 void AddCircleAction::redo() 
 {
+	Output* pOut = pManager->GetOutput();
+	pOut->ClearDrawArea();
 	pManager->AddFigure(C);
+	pManager->UpdateInterface();
 	pManager->GetOutput()->PrintMessage("Redo Drawing Circle");
 }
 

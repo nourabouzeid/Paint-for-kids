@@ -47,8 +47,8 @@ private:
 	int FigCount, f, ID, actnum,undocount, redocount;	//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 	Action* act[20];
-	Action*UndoList[maxundoredocount];
-	Action*RedoList[maxundoredocount];
+	Action* UndoList[maxundoredocount];
+	Action* RedoList[maxundoredocount];
 	bool recording, play, stop;
 	bool sound;
 	CFigure* SelectedFig; //Pointer to the selected figure

@@ -69,7 +69,9 @@ void AddTriangleAction::undo()
 
 void AddTriangleAction::redo() 
 {
-
+	Output* pOut = pManager->GetOutput();
+	pOut->ClearDrawArea();
 	pManager->AddFigure(Trg);
+	pManager->UpdateInterface();
 	pManager->GetOutput()->PrintMessage("Redo Drawing Triangle");
 }
