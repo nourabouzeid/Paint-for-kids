@@ -194,6 +194,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 					}
 				}
 			}
+			
 		}
 	}
 	pAct->Execute(true);//Execute
@@ -396,17 +397,27 @@ void ApplicationManager::SaveAll(ofstream& Fout)
 }
 	Action* ApplicationManager::UndoLastAction() 
 	{
-		if (undocount==0) return NULL;
+		if (undocount==0) 
+		{
+		GetOutput()->PrintMessage("No Action to undo");
+		return NULL;
+		}
 	Action* lastAct = UndoList[undocount];
-	delete UndoList[undocount--];
+	delete UndoList[undocount];
+	UndoList[undocount--]=NULL;
 	RedoList[redocount++]=lastAct;
 	return lastAct;
 	}
 	Action* ApplicationManager::RedoLastAction() 
 	{
-		if (redocount==0) return NULL;
+		if (redocount==0)
+		{
+			GetOutput()->PrintMessage("No Action to redo");
+			return NULL;
+		}
 	Action* lastAct = RedoList[redocount];
-	delete UndoList[redocount--];
+	delete RedoList[redocount];
+	RedoList[redocount--]=NULL;
 	UndoList[undocount++]=lastAct;
 	return lastAct;
 	}
@@ -421,6 +432,8 @@ void ApplicationManager::SaveAll(ofstream& Fout)
 			}
 		}
 	UndoList[undocount]=pAct;
+	undocount++;
+	return;
 	}
 	bool ApplicationManager::DeleteLastFig()
 	{

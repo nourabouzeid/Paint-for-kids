@@ -8,7 +8,7 @@ class AddCircleAction : public Action
 private:
 	Point P1, P2; //Rectangle Corners
 	GfxInfo RectGfxInfo;
-	CCircle *PCircle;
+	CFigure* C;
 public:
 	AddCircleAction(ApplicationManager* pApp);
 

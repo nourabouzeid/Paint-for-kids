@@ -1,42 +1,9 @@
-﻿Build started 12/31/2022 9:19:15 AM.
+﻿Build started 12/31/2022 2:38:33 PM.
      1>Project "C:\Users\go\Desktop\Phase-2-project\Phase2 - Code F22\PT-Project.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\vs\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _VC80_UPGRADE=0x0600 /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug/" /Fd".\Debug/vc110.pdb" /FR".\Debug\\" /Gd /TP /analyze- /errorReport:prompt Actions\AddCircleAction.cpp Actions\AddHexAction.cpp Actions\AddRectAction.cpp Actions\AddSqrAction.cpp Actions\AddTriangleAction.cpp Actions\ClearAllAction.cpp Actions\CreatDAction.cpp Actions\CreatFAction.cpp Actions\CreatFigureAction.cpp Actions\CreateDToolBar2Action.cpp Actions\CreateDToolbarAction.cpp Actions\CreatePToolbarAction.cpp Actions\DeleteFigureAction.cpp Actions\DrawCAction.cpp Actions\ExitAction.cpp Actions\FillCAction.cpp Actions\LoadAction.cpp Actions\MoveAction.cpp Actions\PickByColorAction.cpp Actions\PickByColorAndTypeAction.cpp Actions\PickByTypeAction.cpp Actions\PlayRecordAction.cpp Actions\RedoAction.cpp Actions\SaveAction.cpp Actions\SelectAction.cpp Actions\StartAction.cpp Actions\StopAction.cpp Actions\UndoAction.cpp ApplicationManager.cpp main.cpp
-         AddRectAction.cpp
-         AddCircleAction.cpp
-         Generating Code...
-         Compiling...
+         C:\vs\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _VC80_UPGRADE=0x0600 /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug/" /Fd".\Debug/vc110.pdb" /FR".\Debug\\" /Gd /TP /analyze- /errorReport:prompt ApplicationManager.cpp
          ApplicationManager.cpp
      1>c:\users\go\desktop\phase-2-project\phase2 - code f22\applicationmanager.cpp(183): warning C4805: '==' : unsafe mix of type 'GUI_MODE' and type 'bool' in operation
-         Generating Code...
-         Skipping... (no relevant changes detected)
-         main.cpp
-         UndoAction.cpp
-         StopAction.cpp
-         StartAction.cpp
-         SelectAction.cpp
-         SaveAction.cpp
-         RedoAction.cpp
-         PlayRecordAction.cpp
-         PickByTypeAction.cpp
-         PickByColorAndTypeAction.cpp
-         PickByColorAction.cpp
-         MoveAction.cpp
-         LoadAction.cpp
-         FillCAction.cpp
-         ExitAction.cpp
-         DrawCAction.cpp
-         DeleteFigureAction.cpp
-         CreatePToolbarAction.cpp
-         CreateDToolbarAction.cpp
-         CreateDToolBar2Action.cpp
-         CreatFigureAction.cpp
-         CreatFAction.cpp
-         CreatDAction.cpp
-         ClearAllAction.cpp
-         AddTriangleAction.cpp
-         AddSqrAction.cpp
-         AddHexAction.cpp
        Link:
          C:\vs\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:".\Debug/PT Project.exe" /INCREMENTAL /NOLOGO odbc32.lib odbccp32.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:".\Debug/PT Project.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\Debug\PT Project.lib" /MACHINE:X86 /SAFESEH .\Debug/AddCircleAction.obj
          .\Debug/AddHexAction.obj
@@ -119,4 +86,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.33
+Time Elapsed 00:00:04.13

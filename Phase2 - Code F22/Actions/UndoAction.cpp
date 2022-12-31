@@ -14,12 +14,13 @@ void UndoAction::ReadActionParameters()
 //Execute the action
 void UndoAction::Execute(bool w)
 {
-	
-	pManager->UndoLastAction();
 	if(w)
 		{
 			ReadActionParameters();
 		}
+	Action* Act = pManager->UndoLastAction();
+	if (Act != NULL)
+		Act->undo();
 }
 bool UndoAction::isrecord()
 {

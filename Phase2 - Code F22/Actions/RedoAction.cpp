@@ -14,11 +14,11 @@ void RedoAction::ReadActionParameters()
 //Execute the action
 void RedoAction::Execute(bool w)
 {
-	pManager->RedoLastAction();
 	if(w)
-	{
 		ReadActionParameters();
-	}
+	Action* Act = pManager->RedoLastAction();
+	if (Act != NULL)
+		Act->redo();
 }
 bool RedoAction::isrecord()
 {
