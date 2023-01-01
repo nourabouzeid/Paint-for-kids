@@ -20,7 +20,7 @@ void LoadAction::ReadActionParameters()
 	pOut->ClearStatusBar();
 }
 
-bool LoadAction::Execute(bool w)
+void LoadAction::Execute(bool w)
 {
 	if(w)
 	ReadActionParameters();
@@ -61,7 +61,6 @@ bool LoadAction::Execute(bool w)
 			pManager->AddFigure(triangle);
 		}
 	}
-	return true;
 }
 
 bool LoadAction::isrecord()

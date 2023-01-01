@@ -16,7 +16,7 @@ public:
 	virtual void ReadActionParameters();
 
 	//Add rectangle to the ApplicationManager
-	virtual bool Execute(bool w = true);
+	virtual void Execute(bool w = true);
 	bool isrecord();
 	virtual void undo();
 	virtual void redo();

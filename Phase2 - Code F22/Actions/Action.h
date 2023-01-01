@@ -26,7 +26,7 @@ public:
 	virtual void ReadActionParameters() = 0;
 
 	//Execute action (code depends on action type)
-	virtual bool Execute(bool w = true) = 0;
+	virtual void Execute(bool w = true) = 0;
 	virtual bool isrecord() = 0;
 	virtual void undo() = 0;
 	virtual void redo() = 0;

@@ -20,12 +20,11 @@ void DeleteFigureAction::ReadActionParameters()
 
 
 
-bool DeleteFigureAction::Execute(bool w)
+void DeleteFigureAction::Execute(bool w)
 {
 	ReadActionParameters();
 	cpycf=cf;
 	pManager->deletefigure(cf);
-	return false;
 }
 
 bool DeleteFigureAction::isrecord()

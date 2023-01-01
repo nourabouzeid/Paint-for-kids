@@ -19,7 +19,7 @@ void PickByTypeAction::ReadActionParameters()
 
 }
 
-bool PickByTypeAction::Execute(bool w)
+void PickByTypeAction::Execute(bool w)
 {
 	int rfig,count[5],i=0,r,c,s,h,t;
 	bool fr=true,fc=true,fs=true,fh=true,ft=true;
@@ -132,7 +132,6 @@ bool PickByTypeAction::Execute(bool w)
 		}
 		pOut->PrintMessage("The Final Score is: Number of Correct Picks is: "+to_string(counter)+msg+to_string(icounter));
 	}
-	return true;
 }
 bool PickByTypeAction::isrecord()
 {

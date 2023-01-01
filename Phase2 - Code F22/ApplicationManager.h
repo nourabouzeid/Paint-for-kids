@@ -53,8 +53,7 @@ private:
 	Action* act[20];       //pointer to actions recorded
 	Action* undolist[5];  //array of undo actions
 	Action* redolist[5];  //array of redo actions
-	Action* lastaction;   //last action i press
-	Action* cpyundoaction;  //copy of undo reaction to recorde in redo list
+	Action* lastaction;   //last action i press  
 	Action* startrecord;  // pointer to recording action
 
 
@@ -112,7 +111,6 @@ public:
 	void setsound(bool f);
 	void setisundo(bool s);
 	void setisredo(bool s);
-	Action* getcpyundoaction();
 	Action* getredoaction();
 	Action* getundoaction();
 	Action* getlastaction();

@@ -13,13 +13,12 @@ void SoundAction::ReadActionParameters()
 {
 }
 
-bool SoundAction::Execute(bool w)
+void SoundAction::Execute(bool w)
 {
 	if(pManager->getsound())
 		pManager->setsound(false);
 	else
 		pManager->setsound(true);
-	return true;
 }
 
 bool SoundAction::isrecord()

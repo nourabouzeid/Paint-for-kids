@@ -13,7 +13,7 @@ StartAction::StartAction(ApplicationManager* pApp) :Action(pApp)
 void StartAction::ReadActionParameters()
 {}
 
-bool StartAction::Execute(bool w)
+void StartAction::Execute(bool w)
 {
 	Output* pOut = pManager->GetOutput();
 	Action* acttype = pManager->getlastaction();
@@ -27,10 +27,7 @@ bool StartAction::Execute(bool w)
 		if (num != 0)
 		{
 			pOut->PrintMessage(" ERROR   <CantRecord>");
-			if (recordeddd())
-				return false;
-			else
-				return true;
+			return;
 		}
 	}
 	if (fn == 0 || rec )
@@ -43,11 +40,6 @@ bool StartAction::Execute(bool w)
 	}
 	else 
 		pOut->PrintMessage(" ERROR   <CantRecord>");
-
-	if (recordeddd())
-		return false;
-	else
-		return true;
 }
 
 bool StartAction::isrecord()

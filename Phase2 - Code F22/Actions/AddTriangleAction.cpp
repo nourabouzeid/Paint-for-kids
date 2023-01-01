@@ -43,7 +43,7 @@ void AddTriangleAction::ReadActionParameters()
 }
 
 //Execute the action
-bool AddTriangleAction::Execute(bool w)
+void AddTriangleAction::Execute(bool w)
 {
 	if(pManager->getsound())
 		PlaySound("Triangle.wav",NULL,SND_SYNC);
@@ -56,7 +56,6 @@ bool AddTriangleAction::Execute(bool w)
 
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(R);
-	return false;
 }
 
 bool AddTriangleAction::isrecord()

@@ -188,25 +188,21 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	//Execute the created action
 	if (pAct != NULL)
 	{
-		bool del= pAct->Execute(true);          //Execute
 		lastaction=pAct;
+		pAct->Execute(true);//Execute
 		if(isundo)
 			addtoundolist(lastaction);
-		if(isredo)
+		if(isredo&&getundoaction())
 			addtoredolist(lastaction);
 		if(!isredo&&ActType!=REDO&&isundo)
 		{
 		for (int i = 0; i < 5; i++)
 		redolist[i] = NULL;
+		redoact=0;
 		}
 		if (recording && ActType != STARTRECORDING)
 			startrecord->Execute(false);
-		if (del)
-		{
-			if (pAct == startrecord) { startrecord = NULL; }
-			delete pAct;
-			pAct = NULL;
-		}
+		pAct = NULL;
 	}
 }
 //==================================================================================//
@@ -222,7 +218,7 @@ void ApplicationManager::clearall()
 	}
 	if (!recording && !play)
 	{
-		for (int i = 0; i < undoact; i++)
+		for (int i = 0; i < 5; i++)
 		{
 			if (!undolist[i]->recordeddd())
 			{
@@ -230,12 +226,8 @@ void ApplicationManager::clearall()
 			}
 			undolist[i] = NULL;
 		}
-		for (int i = 0; i < redoact; i++)
+		for (int i = 0; i < 5; i++)
 		{
-			if (!redolist[i]->recordeddd())
-			{
-				delete redolist[i];
-			}
 			redolist[i] = NULL;
 		}
 		for (int i = 0; i < actnum; i++)
@@ -243,9 +235,8 @@ void ApplicationManager::clearall()
 			delete act[i];
 			act[i] = NULL;
 		}
-		if(startrecord) 
-		   delete startrecord;
 		startrecord = NULL;
+		lastaction = NULL;
 		actnum = 0;
 		undoact = 0;
 		redoact = 0;
@@ -408,10 +399,6 @@ Action* ApplicationManager::getundoaction()
 	}
 	return undoaction;
 }
-Action* ApplicationManager::getcpyundoaction()
-{
-	return cpyundoaction;
-}
 Action* ApplicationManager::getredoaction()
 {
 	Action* redoaction;
@@ -532,7 +519,6 @@ void ApplicationManager::addtoredolist(Action* pAct)
 }
 void ApplicationManager::removefromundolist()
 {
-	cpyundoaction = getundoaction();
 	int remove;
 	if (!undolist[0])
 		return;

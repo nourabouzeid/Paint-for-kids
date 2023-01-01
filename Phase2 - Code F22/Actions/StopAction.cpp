@@ -21,7 +21,7 @@ void StopAction::ReadActionParameters()
 		pOut->PrintMessage("you must turn on recording first");
 }
 
-bool StopAction::Execute(bool w)
+void StopAction::Execute(bool w)
 {
 	if (w)
 		ReadActionParameters();
@@ -29,7 +29,6 @@ bool StopAction::Execute(bool w)
 	if (rec)
 		pManager->setstop(true);
 	pManager->setrecording(false);
-	return true;
 }
 
 bool StopAction::isrecord()

@@ -23,7 +23,7 @@ void SelectAction::ReadActionParameters()
 	pOut->ClearStatusBar();
 }
 
-bool SelectAction::Execute(bool w)
+void SelectAction::Execute(bool w)
 {
 	CFigure* cf1;
 	CFigure* cf2;
@@ -46,10 +46,6 @@ bool SelectAction::Execute(bool w)
 			pManager->setselectedfigure(cf1);
 		}
 	}
-	if (recordeddd())
-		return false;
-	else
-		return true;
 }
 
 bool SelectAction::isrecord()

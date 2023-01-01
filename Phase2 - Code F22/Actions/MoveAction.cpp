@@ -29,12 +29,11 @@ void MoveAction::ReadActionParameters()
 	pOut->ClearDrawArea();
 }
 
-bool MoveAction::Execute(bool w)
+void MoveAction::Execute(bool w)
 {
 	if(w)
 	ReadActionParameters();
 	pManager->MOVEE(p);
-	return false;
 }
 
 bool MoveAction::isrecord()

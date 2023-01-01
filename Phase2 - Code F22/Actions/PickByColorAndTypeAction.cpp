@@ -19,7 +19,7 @@ void PickByColorAndTypeAction::ReadActionParameters()
 
 }
 
-bool PickByColorAndTypeAction::Execute(bool w)
+void PickByColorAndTypeAction::Execute(bool w)
 {
 	Output* pOut = pManager->GetOutput();
 	Input* pIn=pOut->CreateInput();
@@ -128,7 +128,6 @@ bool PickByColorAndTypeAction::Execute(bool w)
 		}
 		pOut->PrintMessage("The Final Score is: Number of Correct Picks is: "+to_string(counter)+msg+to_string(icounter));
 	}
-	return true;
 }
 bool PickByColorAndTypeAction::isrecord()
 {

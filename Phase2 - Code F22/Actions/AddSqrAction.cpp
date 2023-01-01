@@ -34,7 +34,7 @@ void AddSqrAction::ReadActionParameters()
 }
 
 //Execute the action
-bool AddSqrAction::Execute(bool w)
+void AddSqrAction::Execute(bool w)
 {
 	if(pManager->getsound())
 		PlaySound("Square.wav",NULL,SND_SYNC);
@@ -47,7 +47,6 @@ bool AddSqrAction::Execute(bool w)
 
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(R);
-	return false;
 }
 
 bool AddSqrAction::isrecord()

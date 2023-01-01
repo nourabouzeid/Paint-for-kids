@@ -14,7 +14,7 @@ void PlayRecordAction::ReadActionParameters()
 {
 }
 
-bool PlayRecordAction::Execute(bool w)
+void PlayRecordAction::Execute(bool w)
 {
 	Output* pOut = pManager->GetOutput();
 	bool pl = pManager->getstart();
@@ -34,7 +34,6 @@ bool PlayRecordAction::Execute(bool w)
 	else
 		pOut->PrintMessage("ERROR  <you must start recording and stop it>");
 
-	return true;
 }
 
 bool PlayRecordAction::isrecord()

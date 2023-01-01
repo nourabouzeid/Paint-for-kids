@@ -26,7 +26,7 @@ void SaveAction::ReadActionParameters()
 	pOut->ClearStatusBar();
 }
 
-bool SaveAction::Execute(bool w)
+void SaveAction::Execute(bool w)
 {
 	if(w)
 	ReadActionParameters();
@@ -34,7 +34,7 @@ bool SaveAction::Execute(bool w)
 	Fout<<crntdclr<<"   "<<crntfclr<<endl; 
 	pManager->SaveAll(Fout);
 	Fout.close();
-	return true;
+
 }
 
 bool SaveAction::isrecord()

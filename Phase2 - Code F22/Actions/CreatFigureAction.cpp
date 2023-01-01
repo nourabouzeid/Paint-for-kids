@@ -18,13 +18,12 @@ void CreatFigureAction::ReadActionParameters()
 
 
 
-bool CreatFigureAction::Execute(bool w)
+void CreatFigureAction::Execute(bool w)
 {
 	if(pManager->getsound())
 		PlaySound("Figures.wav",NULL,SND_SYNC);
 	Output* pOut = pManager->GetOutput();
 	pOut->CreateFigureToolBar();
-	return false;
 }
 
 bool CreatFigureAction::isrecord()
