@@ -9,7 +9,7 @@ private:
 public:
 	SaveAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();
-	virtual void Execute(bool w = true);
+	virtual bool Execute(bool w = true);
 	bool isrecord();
 	virtual void undo();
 	virtual void redo();

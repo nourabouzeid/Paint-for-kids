@@ -15,7 +15,7 @@ void RedoAction::ReadActionParameters()
 	redoaction=pManager->getredoaction();
 }
 
-void RedoAction::Execute(bool w)
+bool RedoAction::Execute(bool w)
 {
 	Output* pOut = pManager->GetOutput();
 	if(w)
@@ -23,11 +23,18 @@ void RedoAction::Execute(bool w)
 	if(!redoaction)
 	{
 		pOut->PrintMessage("No Actions To redo");
-		return;
+		if (recordeddd())
+			return false;
+		else
+			return true;
 	}
 	redoaction->redo();
 	pManager->addtoundolist(pManager->getcpyundoaction());
 	pManager->removefromredolist();
+	if (recordeddd())
+		return false;
+	else
+		return true;
 }
 
 bool RedoAction::isrecord()

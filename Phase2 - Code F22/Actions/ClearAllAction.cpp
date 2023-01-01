@@ -18,11 +18,15 @@ void ClearAllAction::ReadActionParameters()
 
 
 
-void ClearAllAction::Execute(bool w)
+bool ClearAllAction::Execute(bool w)
 {
 	Output* pOut = pManager->GetOutput();
 	pOut->ClearDrawArea();
 	pManager->clearall();
+	if (recordeddd())
+		return false;
+	else
+		return true;
 }
 
 bool ClearAllAction::isrecord()

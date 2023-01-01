@@ -15,7 +15,7 @@ void UndoAction::ReadActionParameters()
 	undoaction=pManager->getundoaction();
 }
 
-void UndoAction::Execute(bool w)
+bool UndoAction::Execute(bool w)
 {
 	Output*pOut=pManager->GetOutput();
 	if(w)
@@ -23,10 +23,18 @@ void UndoAction::Execute(bool w)
 	if(!undoaction)
 	{
 		pOut->PrintMessage("No Actions To Undo");
-		return;
+		if (recordeddd())
+			return false;
+		else
+			return true;
 	}
 	undoaction->undo();
 	pManager->removefromundolist();
+
+	if (recordeddd())
+		return false;
+	else
+		return true;
 }
 
 bool UndoAction::isrecord()

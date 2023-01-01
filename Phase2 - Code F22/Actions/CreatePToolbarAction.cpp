@@ -18,7 +18,7 @@ void CreatePToolbarAction::ReadActionParameters()
 
 
 
-void CreatePToolbarAction::Execute(bool w)
+bool CreatePToolbarAction::Execute(bool w)
 {
 	Output* pOut = pManager->GetOutput();
 	Fout.open("PlayMode.txt");
@@ -26,6 +26,7 @@ void CreatePToolbarAction::Execute(bool w)
 	pManager->SaveAll(Fout);
 	Fout.close();
 	pOut->CreatePlayToolBar();
+	return true;
 }
 
 bool CreatePToolbarAction::isrecord()

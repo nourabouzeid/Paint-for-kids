@@ -38,7 +38,7 @@ void AddCircleAction::ReadActionParameters()
 }
 
 //Execute the action
-void AddCircleAction::Execute(bool w)
+bool AddCircleAction::Execute(bool w)
 {
 	if(pManager->getsound())
 		PlaySound("Circle.wav",NULL,SND_SYNC);
@@ -51,6 +51,7 @@ void AddCircleAction::Execute(bool w)
 
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(R);
+	return false;
 }
 
 bool AddCircleAction::isrecord()

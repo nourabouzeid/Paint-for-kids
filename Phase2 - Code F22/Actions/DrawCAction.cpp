@@ -16,7 +16,7 @@ void DrawCAction::ReadActionParameters()
 	c = pManager->getcolor();
 }
 
-void DrawCAction::Execute(bool w)
+bool DrawCAction::Execute(bool w)
 {
 	if(w)
 	ReadActionParameters();
@@ -24,6 +24,7 @@ void DrawCAction::Execute(bool w)
 	oldc = cf1->getGfxInfo().DrawClr;
 	if(cf1)
 	cf1->ChngDrawClr(c);
+	return false;
 }
 
 bool DrawCAction::isrecord()

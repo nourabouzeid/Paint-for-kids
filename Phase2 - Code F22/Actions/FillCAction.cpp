@@ -16,7 +16,7 @@ void FillCAction::ReadActionParameters()
 	c = pManager->getcolor();
 }
 
-void FillCAction::Execute(bool w)
+bool FillCAction::Execute(bool w)
 {
 	if (w)
 		ReadActionParameters();
@@ -26,6 +26,7 @@ void FillCAction::Execute(bool w)
 		oldc = cf1->getGfxInfo().FillClr;
 	if(cf1)
 	cf1->ChngFillClr(c);
+	return false;
 }
 
 bool FillCAction::isrecord()

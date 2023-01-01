@@ -188,8 +188,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	//Execute the created action
 	if (pAct != NULL)
 	{
+		bool del= pAct->Execute(true);          //Execute
 		lastaction=pAct;
-		pAct->Execute(true);//Execute
 		if(isundo)
 			addtoundolist(lastaction);
 		if(isredo)
@@ -201,7 +201,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		}
 		if (recording && ActType != STARTRECORDING)
 			startrecord->Execute(false);
-		pAct = NULL;
+		if (del)
+		{
+			if (pAct == startrecord) { startrecord = NULL; }
+			delete pAct;
+			pAct = NULL;
+		}
 	}
 }
 //==================================================================================//
@@ -217,7 +222,7 @@ void ApplicationManager::clearall()
 	}
 	if (!recording && !play)
 	{
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < undoact; i++)
 		{
 			if (!undolist[i]->recordeddd())
 			{
@@ -225,8 +230,12 @@ void ApplicationManager::clearall()
 			}
 			undolist[i] = NULL;
 		}
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < redoact; i++)
 		{
+			if (!redolist[i]->recordeddd())
+			{
+				delete redolist[i];
+			}
 			redolist[i] = NULL;
 		}
 		for (int i = 0; i < actnum; i++)
@@ -234,8 +243,9 @@ void ApplicationManager::clearall()
 			delete act[i];
 			act[i] = NULL;
 		}
+		if(startrecord) 
+		   delete startrecord;
 		startrecord = NULL;
-		lastaction = NULL;
 		actnum = 0;
 		undoact = 0;
 		redoact = 0;

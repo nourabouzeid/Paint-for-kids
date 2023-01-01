@@ -19,7 +19,7 @@ void PickByColorAndTypeAction::ReadActionParameters()
 
 }
 
-void PickByColorAndTypeAction::Execute(bool w)
+bool PickByColorAndTypeAction::Execute(bool w)
 {
 	Output* pOut = pManager->GetOutput();
 	Input* pIn=pOut->CreateInput();
@@ -68,7 +68,7 @@ void PickByColorAndTypeAction::Execute(bool w)
 			Hex->Load(Fin);
 			pManager->AddFigure(Hex);
 			if(Hex->getGfxInfo().isFilled)
-			random[i++]=Hex->clrtostring((Hex->getGfxInfo()).FillClr)+" HEXGAON";
+			random[i++]=Hex->clrtostring((Hex->getGfxInfo()).FillClr)+" HEXAGON";
 			else
 				random[i++]="NO_FILL HEXAGON";
 		}
@@ -128,6 +128,7 @@ void PickByColorAndTypeAction::Execute(bool w)
 		}
 		pOut->PrintMessage("The Final Score is: Number of Correct Picks is: "+to_string(counter)+msg+to_string(icounter));
 	}
+	return true;
 }
 bool PickByColorAndTypeAction::isrecord()
 {

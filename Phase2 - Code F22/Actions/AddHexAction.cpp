@@ -34,7 +34,7 @@ void AddHexAction::ReadActionParameters()
 }
 
 //Execute the action
-void AddHexAction::Execute(bool w)
+bool AddHexAction::Execute(bool w)
 {
 	if(pManager->getsound())
 		PlaySound("Hexagon.wav",NULL,SND_SYNC);
@@ -47,6 +47,7 @@ void AddHexAction::Execute(bool w)
 
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(R);
+	return false;
 }
 
 bool AddHexAction::isrecord()

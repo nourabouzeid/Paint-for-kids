@@ -18,7 +18,7 @@ void CreateDToolbarAction::ReadActionParameters()
 
 
 
-void CreateDToolbarAction::Execute(bool w)
+bool CreateDToolbarAction::Execute(bool w)
 {
 	Output* pOut = pManager->GetOutput();
 	pOut->CreateDrawToolBar();
@@ -58,6 +58,7 @@ void CreateDToolbarAction::Execute(bool w)
 			pManager->AddFigure(triangle);
 		}
 	}
+	return true;
 }
 
 bool CreateDToolbarAction::isrecord()

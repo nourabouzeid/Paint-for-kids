@@ -38,7 +38,7 @@ void AddRectAction::ReadActionParameters()
 }
 
 //Execute the action
-void AddRectAction::Execute(bool w) 
+bool AddRectAction::Execute(bool w) 
 {
 	if(pManager->getsound())
 		PlaySound("Rectangle.wav",NULL,SND_SYNC);
@@ -51,6 +51,7 @@ void AddRectAction::Execute(bool w)
 
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(R);
+	return false;
 }
 
 bool AddRectAction::isrecord()
