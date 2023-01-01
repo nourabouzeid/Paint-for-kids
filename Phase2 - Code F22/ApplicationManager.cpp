@@ -208,7 +208,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 //						        Delete Functions 							        //
 //==================================================================================//
 
-void ApplicationManager::clearallfigure()
+void ApplicationManager::clearall()
 {
 	for (int i = 0; i < FigCount; i++)
 	{
@@ -217,15 +217,38 @@ void ApplicationManager::clearallfigure()
 	}
 	if (!recording && !play)
 	{
+		for (int i = 0; i < 5; i++)
+		{
+			if (!undolist[i]->recordeddd())
+			{
+				delete undolist[i];
+			}
+			undolist[i] = NULL;
+		}
+		for (int i = 0; i < 5; i++)
+		{
+			redolist[i] = NULL;
+		}
 		for (int i = 0; i < actnum; i++)
 		{
 			delete act[i];
 			act[i] = NULL;
 		}
+		startrecord = NULL;
+		lastaction = NULL;
 		actnum = 0;
+		undoact = 0;
+		redoact = 0;
+		f = 0;
+		ID = 1;
 		recording = false;
-		stop = false;
 		play = false;
+		stop = false;
+		start = false;
+		sound = false;
+		isundo = false;
+		isredo = false;
+		c1 = GREEN;
 	}
 	FigCount = 0;
 	SelectedFig = NULL;
@@ -343,7 +366,10 @@ CFigure* ApplicationManager::getselectedfigure()
 void ApplicationManager::setlastaction(Action* Act)
 {
 	if (actnum < 20)
+	{
 		act[actnum++] = Act;
+		Act->setrecorded(true);
+	}
 }
 
 CFigure* ApplicationManager::GetFigure(Point p) const

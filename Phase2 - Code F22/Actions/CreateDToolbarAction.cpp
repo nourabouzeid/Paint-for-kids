@@ -62,7 +62,7 @@ void CreateDToolbarAction::Execute(bool w)
 
 bool CreateDToolbarAction::isrecord()
 {
-	return true;
+	return false;
 }
 void CreateDToolbarAction::undo()
 {

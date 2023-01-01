@@ -78,7 +78,7 @@ public:
 
 
 	// -- Figures Management Functions
-	void clearallfigure();
+	void clearall();
 	void excuteplayactions();
 	void deleteallfigure();
 	void deletefigure(CFigure* cf1);

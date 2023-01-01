@@ -18,6 +18,7 @@ void ExitAction::ReadActionParameters()
 void ExitAction::Execute(bool w)
 {
 	remove("PlayMode.txt");
+	pManager->clearall();
 }
 
 bool ExitAction::isrecord()
