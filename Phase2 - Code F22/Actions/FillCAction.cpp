@@ -5,22 +5,25 @@
 #include "..\GUI\Output.h"
 
 FillCAction::FillCAction(ApplicationManager* pApp) :Action(pApp)
-{}
+{
+	pManager->setisundo(true);
+	pManager->setisredo(false);
+}
 
 
 void FillCAction::ReadActionParameters()
 {
 	c = pManager->getcolor();
-	cf1 = pManager->getselectedfigure();
-	isfill=cf1->getGfxInfo().isFilled;
-	if(isfill)
-		oldc=cf1->getGfxInfo().FillClr;
 }
 
 void FillCAction::Execute(bool w)
 {
 	if (w)
 		ReadActionParameters();
+	cf1 = pManager->getselectedfigure();
+	isfill = cf1->getGfxInfo().isFilled;
+	if (isfill)
+		oldc = cf1->getGfxInfo().FillClr;
 	if(cf1)
 	cf1->ChngFillClr(c);
 }

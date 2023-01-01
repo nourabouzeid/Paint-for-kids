@@ -5,35 +5,41 @@
 #include "..\GUI\Output.h"
 
 StartAction::StartAction(ApplicationManager* pApp) :Action(pApp)
-{}
+{
+	pManager->setisundo(false);
+	pManager->setisredo(false);
+}
 
 void StartAction::ReadActionParameters()
-{
-	Output* pOut = pManager->GetOutput();
-
-	pOut->PrintMessage(" recording......");
-}
+{}
 
 void StartAction::Execute(bool w)
 {
 	Output* pOut = pManager->GetOutput();
-	int fn;
+	Action* acttype = pManager->getlastaction();
+	int fn, num;
 	bool rec;
-	if (w)
-	ReadActionParameters();
+	num = pManager->getactnum();
 	fn = pManager->getfigcount();
-	rec= pManager->getrecording();
-	if (fn == 0 || rec)
+	rec = pManager->getrecording();
+	if (w)
 	{
+		if (num != 0)
+		{
+			pOut->PrintMessage(" ERROR   <CantRecord>");
+			return;
+		}
+	}
+	if (fn == 0 || rec )
+	{
+		pOut->PrintMessage(" recording......");
 		pManager->setrecording(true);
-		pManager->setplay(true);
+		pManager->setstart(true);
+		if ((acttype->isrecord()))
+			pManager->setlastaction(acttype);
 	}
 	else 
 		pOut->PrintMessage(" ERROR   <CantRecord>");
-    Action* acttype;
-	acttype = pManager->getlastaction();
-	if ((acttype->isrecord()))
-		pManager->setlastaction(acttype);
 }
 
 bool StartAction::isrecord()

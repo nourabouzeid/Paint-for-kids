@@ -7,7 +7,10 @@
 #include "..\GUI\Output.h"
 
 AddSqrAction::AddSqrAction(ApplicationManager* pApp) :Action(pApp)
-{}
+{
+	pManager->setisundo(true);
+	pManager->setisredo(false);
+}
 
 void AddSqrAction::ReadActionParameters()
 {

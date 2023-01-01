@@ -5,20 +5,23 @@
 #include "..\GUI\Output.h"
 
 DrawCAction::DrawCAction(ApplicationManager* pApp) :Action(pApp)
-{}
+{
+	pManager->setisundo(true);
+	pManager->setisredo(false);
+}
 
 
 void DrawCAction::ReadActionParameters()
 {
 	c = pManager->getcolor();
-	cf1=pManager->getselectedfigure();
-	oldc=cf1->getGfxInfo().DrawClr;
 }
 
 void DrawCAction::Execute(bool w)
 {
 	if(w)
 	ReadActionParameters();
+	cf1 = pManager->getselectedfigure();
+	oldc = cf1->getGfxInfo().DrawClr;
 	if(cf1)
 	cf1->ChngDrawClr(c);
 }

@@ -5,7 +5,10 @@
 #include "..\GUI\Output.h"
 
 UndoAction::UndoAction(ApplicationManager* pApp) :Action(pApp)
-{}
+{
+	pManager->setisundo(false);
+	pManager->setisredo(true);
+}
 
 void UndoAction::ReadActionParameters()
 {
@@ -15,6 +18,7 @@ void UndoAction::ReadActionParameters()
 void UndoAction::Execute(bool w)
 {
 	Output*pOut=pManager->GetOutput();
+	if(w)
 	ReadActionParameters();
 	if(!undoaction)
 	{
@@ -27,7 +31,7 @@ void UndoAction::Execute(bool w)
 
 bool UndoAction::isrecord()
 {
-	return false;
+	return true;
 }
 void UndoAction::undo()
 {

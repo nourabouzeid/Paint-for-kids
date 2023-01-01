@@ -7,7 +7,10 @@
 #include "..\GUI\Output.h"
 
 AddCircleAction::AddCircleAction(ApplicationManager* pApp) :Action(pApp)
-{}
+{
+	pManager->setisundo(true);
+	pManager->setisredo(false);
+}
 
 void AddCircleAction::ReadActionParameters()
 {

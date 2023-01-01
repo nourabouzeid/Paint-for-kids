@@ -6,6 +6,7 @@ class FillCAction : public Action
 private:
 	color c;
 	CFigure* cf1;
+	CFigure* cf2;
 	color oldc;
 	bool isfill;
 public:

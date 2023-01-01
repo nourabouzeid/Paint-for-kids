@@ -5,7 +5,10 @@
 #include "..\GUI\Output.h"
 
 SelectAction::SelectAction(ApplicationManager* pApp):Action(pApp)
-{}
+{
+	pManager->setisundo(false);
+	pManager->setisredo(false);
+}
 
 void SelectAction::ReadActionParameters()
 {

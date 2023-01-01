@@ -5,7 +5,10 @@
 
 
 DeleteFigureAction::DeleteFigureAction(ApplicationManager* pApp) :Action(pApp)
-{}
+{
+	pManager->setisundo(true);
+	pManager->setisredo(false);
+}
 
 
 

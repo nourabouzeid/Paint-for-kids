@@ -7,7 +7,10 @@
 #include "..\GUI\Output.h"
 
 AddTriangleAction::AddTriangleAction(ApplicationManager* pApp) :Action(pApp)
-{}
+{
+	pManager->setisundo(true);
+	pManager->setisredo(false);
+}
 
 void AddTriangleAction::ReadActionParameters()
 {

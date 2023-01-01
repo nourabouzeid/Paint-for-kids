@@ -7,7 +7,10 @@
 #include "..\GUI\Output.h"
 
 AddRectAction::AddRectAction(ApplicationManager * pApp):Action(pApp)
-{}
+{
+	pManager->setisundo(true);
+	pManager->setisredo(false);
+}
 
 void AddRectAction::ReadActionParameters() 
 {	

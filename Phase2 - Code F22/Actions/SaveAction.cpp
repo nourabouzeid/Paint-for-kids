@@ -5,7 +5,10 @@
 #include "..\GUI\Output.h"
 
 SaveAction::SaveAction(ApplicationManager* pApp) : Action(pApp)
-{}
+{
+	pManager->setisundo(false);
+	pManager->setisredo(false);
+}
 
 
 

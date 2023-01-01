@@ -5,7 +5,10 @@
 
 
 ClearAllAction::ClearAllAction(ApplicationManager* pApp) :Action(pApp)
-{}
+{
+	pManager->setisundo(false);
+	pManager->setisredo(false);
+}
 
 
 
@@ -24,7 +27,7 @@ void ClearAllAction::Execute(bool w)
 
 bool ClearAllAction::isrecord()
 {
-	return false;
+	return true;
 }
 void ClearAllAction::undo()
 {

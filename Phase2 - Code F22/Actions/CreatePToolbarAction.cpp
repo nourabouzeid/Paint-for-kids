@@ -5,7 +5,10 @@
 
 
 CreatePToolbarAction::CreatePToolbarAction(ApplicationManager* pApp) :Action(pApp)
-{}
+{
+	pManager->setisundo(false);
+	pManager->setisredo(false);
+}
 
 
 

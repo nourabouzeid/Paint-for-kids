@@ -5,7 +5,10 @@
 #include "..\GUI\Output.h"
 
 ExitAction::ExitAction(ApplicationManager* pApp) :Action(pApp)
-{}
+{
+	pManager->setisundo(false);
+	pManager->setisredo(false);
+}
 
 
 void ExitAction::ReadActionParameters()

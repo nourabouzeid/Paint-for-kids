@@ -8,20 +8,22 @@ ApplicationManager::ApplicationManager()
 	pOut = new Output;
 	pIn = pOut->CreateInput();
 	SelectedFig = NULL;
+	startrecord = NULL;
+	lastaction = NULL;
 	actnum = 0;
 	FigCount = 0;
-	startrecord = NULL;
-	lastaction=NULL;
+	undoact = 0;
+	redoact = 0;
+	f = 0;
+	ID = 1;
 	recording = false;
 	play = false;
 	stop = false;
-	f = 0;
-	ID=1;
+	start = false;
 	sound=false;
-	undoact=0;
 	isundo=false;
 	isredo=false;
-	redoact=0;
+	
 		
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
@@ -53,73 +55,47 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	{
 	   case FIG:
 		   pAct = new CreatFigureAction(this);  
-		   isundo=false;
-		   isredo=false;
 		   break;
 		case DRAW_RECT:
 			pAct = new AddRectAction(this);
-			isundo=true;
-			isredo=false;
 			break;
 		case DRAW_SQUARE:
 			pAct = new AddSqrAction(this);
-			isundo=true;
-			isredo=false;
 			break;
 		case DRAW_HEXA:
 			pAct = new AddHexAction(this);
-			isundo=true;
-			isredo=false;
 			break;
 		case DRAW_CIRCLE:
 			pAct = new AddCircleAction(this);
-			isundo=true;
-			isredo=false;
 			break;
 		case DRAW_TRIANGLE:
 			pAct = new AddTriangleAction(this);
-			isundo=true;
-			isredo=false;
 			break;
 		case SELECT:
 			pAct = new SelectAction(this);
-			isundo=false;
-			isredo=false;
 			break;
 		case TO_DRAW1:
 			pAct = new CreateDToolbarAction(this);
-			isundo=false;
-			isredo=false;
 			break;
 		case TO_DRAW2:
 			pAct = new CreateDToolbar2Action(this);
-			isundo=false;
-			isredo=false;
 			break;
 		case DRAW_COLOR:
 			pAct = new CreatDAction(this);
-			isundo=false;
-			isredo=false;
 			f = 1;
 			break;
 		case FILL_COLOR:
 			pAct = new CreatFAction(this);
-			isundo=false;
-			isredo=false;
 			f = 2;
 			break;
 		case BLACK_COLOR:
 			c1 = BLACK;
-			isundo=true;
-			isredo=false;
 			if (f == 1)
 				pAct = new DrawCAction(this);
 			else if(f==2)
 				pAct = new FillCAction(this);
 			break;
 		case YELLOW_COLOR:
-			isundo=true;
-			isredo=false;
 			c1 = YELLOW;
 			if (f == 1)
 				pAct = new DrawCAction(this);
@@ -127,8 +103,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 				pAct = new FillCAction(this);
 			break;
 		case ORANGE_COLOR:
-			isundo=true;
-			isredo=false;
 			c1 = ORANGE;
 			if (f == 1)
 				pAct = new DrawCAction(this);
@@ -136,8 +110,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 				pAct = new FillCAction(this);
 			break;
 		case RED_COLOR:
-			isundo=true;
-			isredo=false;
 			c1 = RED;
 			if (f == 1)
 				pAct = new DrawCAction(this);
@@ -145,8 +117,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 				pAct = new FillCAction(this);
 			break;
 		case GREEN_COLOR:
-			isundo=true;
-			isredo=false;
 			c1 = GREEN;
 			if (f == 1)
 				pAct = new DrawCAction(this);
@@ -154,8 +124,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 				pAct = new FillCAction(this);
 			break;
 		case BLUE_COLOR:
-			isundo=true;
-			isredo=false;
 			c1 = BLUE;
 			if (f == 1)
 				pAct = new DrawCAction(this);
@@ -164,85 +132,53 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case TO_PLAY:
 			pAct = new CreatePToolbarAction(this);
-			isundo=false;
-			isredo=false;
 			break;
 		case MOVE:
 			pAct = new MoveAction(this);
-			isundo=true;
-			isredo=false;
 			break;
 		case SAVE:
 			pAct=new SaveAction(this);
-			isundo=false;
-			isredo=false;
 			break;
 		case LOAD:
 			pAct=new LoadAction(this);
-			isundo=false;
-			isredo=false;
 			break;
 		case PICKWITHTYPE:
 			pAct=new PickByTypeAction(this);
-			isundo=false;
-			isredo=false;
 			break;
 		case PICKWITHCOLOR:
 			pAct=new PickByColorAction(this);
-			isundo=false;
-			isredo=false;
 			break;
 		case PICKWITHTYPEANDCOLOR:
 			pAct=new PickByColorAndTypeAction(this);
-			isundo=false;
-			isredo=false;
 			break;
 		case CLEAR:
 			pAct = new ClearAllAction(this);
-			isundo=false;
-			isredo=false;
 			break;
 		case STARTRECORDING:
 			pAct = new StartAction(this);
-			isundo=false;
-			isredo=false;
 			startrecord = pAct;
 			break;
 		case STOPRECORDING:
 			pAct = new StopAction(this);
-			isundo=false;
-			isredo=false;
 			break;
 		case PLAYRECORDING:
 			pAct = new PlayRecordAction(this);
-			isundo=false;
-			isredo=false;
 			break;
 		case SOUND:
 			pAct = new SoundAction(this);
-			isundo=false;
-			isredo=false;
 			break;
 		case DELET:
 			pAct = new DeleteFigureAction(this);
-			isundo=true;
-			isredo=false;
 			break;
 		case UNDO:
 			pAct = new UndoAction(this);
-			isundo=false;
-			isredo=true;
 			break;
 		case REDO:
 			pAct = new RedoAction(this);
-			isundo=false;
-			isredo=false;
 			break;
 		case EXIT:
 			///create ExitAction here
 			pAct=new ExitAction(this);
-			isundo=false;
-			isredo=false;
 			break;
 		
 		case STATUS:	//a click on the status bar ==> no action
@@ -259,15 +195,17 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		if(isredo)
 			addtoredolist(lastaction);
 		if(!isredo&&ActType!=REDO&&isundo)
-		{for (int i = 0; i < 5; i++)
-		redolist[i] = NULL;}
+		{
+		for (int i = 0; i < 5; i++)
+		redolist[i] = NULL;
+		}
 		if (recording && ActType != STARTRECORDING)
-			startrecord->Execute(true);
+			startrecord->Execute(false);
 		pAct = NULL;
 	}
 }
 //==================================================================================//
-//						Figures Management Functions								//
+//						        Delete Functions 							        //
 //==================================================================================//
 
 void ApplicationManager::clearallfigure()
@@ -277,15 +215,58 @@ void ApplicationManager::clearallfigure()
 		delete FigList[i];
 		FigList[i] = NULL;
 	}
-	for (int i = 0; i < actnum; i++)
+	if (!recording && !play)
 	{
-		delete act[i];
-		act[i] = NULL;
+		for (int i = 0; i < actnum; i++)
+		{
+			delete act[i];
+			act[i] = NULL;
+		}
+		actnum = 0;
+		recording = false;
+		stop = false;
+		play = false;
 	}
-	actnum = 0;
 	FigCount = 0;
 	SelectedFig = NULL;
 }
+
+void ApplicationManager::deletefigure(CFigure* cf1)
+{
+	CFigure* temp;
+	for (int i = 0; i < FigCount; i++)
+	{
+		if (FigList[i] == cf1 && i < (FigCount - 1))
+		{
+			temp = FigList[i];
+			FigList[i] = FigList[i + 1];
+			FigList[i + 1] = temp;
+		}
+		if (FigList[i] == cf1 && i == (FigCount - 1))
+		{
+			FigList[i] = NULL;
+			FigCount = FigCount - 1;
+			SelectedFig = NULL;
+		}
+	}
+}
+
+void ApplicationManager::deleteallfigure()
+{
+	for (int i = 0; i < FigCount; i++)
+	{
+		delete FigList[i];
+		FigList[i] = NULL;
+	}
+	FigCount = 0;
+	SelectedFig = NULL;
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+//==================================================================================//
+//						      setters and getters 							        //
+//==================================================================================//
 
 void ApplicationManager::setrecording(bool rec)
 {
@@ -302,22 +283,33 @@ void ApplicationManager::setplay(bool rec)
 	play = rec;
 }
 
-bool ApplicationManager::getplay()
+void ApplicationManager::setstart(bool s)
 {
-	return play;
+	start = s;
+}
+
+bool ApplicationManager::getstart()
+{
+	return start;
+}
+
+int ApplicationManager::getactnum()
+{
+	return actnum;
 }
 
 void ApplicationManager::setstop(bool rec)
 {
 	stop = rec;
 }
-Action* ApplicationManager::getlastaction()
-{
-	return lastaction;
-}
+
 bool ApplicationManager::getstop()
 {
 	return stop;
+}
+Action* ApplicationManager::getlastaction()
+{
+	return lastaction;
 }
 
 int ApplicationManager::getfigcount()
@@ -325,25 +317,96 @@ int ApplicationManager::getfigcount()
 	return FigCount;
 }
 
-void ApplicationManager::deletefigure(CFigure* cf1)
+color ApplicationManager::getcolor()
 {
-	CFigure* temp;
-	for (int i = 0; i < FigCount; i++)
+	return c1;
+}
+bool ApplicationManager::getsound()
+{
+	return sound;
+}
+void ApplicationManager::setsound(bool f)
+{
+	sound = f;
+}
+
+void ApplicationManager::setselectedfigure(CFigure* cf)
+{
+	SelectedFig = cf;
+}
+
+CFigure* ApplicationManager::getselectedfigure()
+{
+	return SelectedFig;
+}
+
+void ApplicationManager::setlastaction(Action* Act)
+{
+	if (actnum < 20)
+		act[actnum++] = Act;
+}
+
+CFigure* ApplicationManager::GetFigure(Point p) const
+{
+	for (int i = FigCount - 1; i >= 0; i--)
 	{
-		if (FigList[i] == cf1 && i < (FigCount-1))
+		if (FigList[i]->isinside(p))
 		{
-			temp = FigList[i];
-			FigList[i] = FigList[i + 1];
-			FigList[i + 1] = temp;
-		}
-		if (FigList[i] == cf1 && i == (FigCount - 1))
-		{
-			FigList[i] = NULL;
-			FigCount = FigCount - 1;
-			SelectedFig = NULL;
+			return FigList[i];
 		}
 	}
+	return NULL;
 }
+
+Action* ApplicationManager::getundoaction()
+{
+	Action* undoaction;
+	if (!undolist[0])
+		return NULL;
+	for (int i = 0; i < 5; i++)
+	{
+		if (undolist[i])
+			undoaction = undolist[i];
+		else
+			return undoaction;
+	}
+	return undoaction;
+}
+Action* ApplicationManager::getcpyundoaction()
+{
+	return cpyundoaction;
+}
+Action* ApplicationManager::getredoaction()
+{
+	Action* redoaction;
+	if (!redolist[0])
+		return NULL;
+	for (int i = 0; i < 5; i++)
+	{
+		if (redolist[i])
+			redoaction = redolist[i];
+		else
+			return redoaction;
+	}
+	return redoaction;
+}
+
+void ApplicationManager::setisundo(bool s)
+{
+	isundo = s;
+}
+
+void ApplicationManager::setisredo(bool s)
+{
+	isredo = s;
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+//==================================================================================//
+//						       Other functions							            //
+//==================================================================================//
+
 string ApplicationManager::clrtostring(color clr)
 {	
 	string s;
@@ -361,18 +424,7 @@ string ApplicationManager::clrtostring(color clr)
 	s="BLACK";
 	return s;
 }
-color ApplicationManager::getcolor()
-{
-	return c1;
-}
-bool ApplicationManager::getsound()
-{
-	return sound;
-}
-void ApplicationManager::setsound(bool f)
-{
-	sound=f;
-}
+
 void ApplicationManager::MOVEE(Point p) const
 {
 	if(SelectedFig!=NULL)
@@ -388,22 +440,6 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 		FigList[FigCount++] = pFig;	
 		
 }
-////////////////////////////////////////////////////////////////////////////////////
-void ApplicationManager::setselectedfigure(CFigure* cf)
-{
-	SelectedFig = cf;
-}
-
-CFigure* ApplicationManager::getselectedfigure()
-{
-	return SelectedFig;
-}
-
-void ApplicationManager::setlastaction(Action* Act)
-{
-	if (actnum < 20)
-		act[actnum++] = Act;
-}
 
 void ApplicationManager::excuteplayactions()
 {
@@ -416,28 +452,86 @@ void ApplicationManager::excuteplayactions()
 	}
 }
 
-void ApplicationManager::deleteallfigure()
+void ApplicationManager::addtoundolist(Action* pAct)
 {
-	for (int i = 0; i < FigCount; i++)
+	Action* temp1, * temp2;
+	if (undoact < 5)
 	{
-		delete FigList[i];
-		FigList[i] = NULL;
+		undolist[undoact] = pAct;
+		undoact++;
 	}
-	FigCount = 0;
-	SelectedFig = NULL;
+	else
+	{
+		temp1 = undolist[3];
+		undolist[3] = undolist[4];
+		for (int i = 3; i > 0; i--)
+		{
+			temp2 = undolist[i - 1];
+			undolist[i - 1] = temp1;
+			temp1 = temp2;
+		}
+		undolist[4] = pAct;
+	}
+}
+void ApplicationManager::addtoredolist(Action* pAct)
+{
+	Action* temp1, * temp2;
+	if (redoact < 5)
+	{
+		redolist[redoact] = pAct;
+		redoact++;
+	}
+	else
+	{
+		temp1 = redolist[3];
+		redolist[3] = redolist[4];
+		for (int i = 3; i > 0; i--)
+		{
+			temp2 = redolist[i - 1];
+			redolist[i - 1] = temp1;
+			temp1 = temp2;
+		}
+		redolist[4] = pAct;
+	}
+}
+void ApplicationManager::removefromundolist()
+{
+	cpyundoaction = getundoaction();
+	int remove;
+	if (!undolist[0])
+		return;
+	for (int i = 0; i < 5; i++)
+	{
+		if (undolist[i])
+			remove = i;
+	}
+	undolist[remove] = NULL;
+	undoact--;
+}
+void ApplicationManager::removefromredolist()
+{
+	int remove;
+	if (!redolist[0])
+		return;
+	for (int i = 0; i < 5; i++)
+	{
+		if (redolist[i])
+			remove = i;
+	}
+	redolist[remove] = NULL;
+	redoact--;
 }
 
-CFigure* ApplicationManager::GetFigure(Point p) const
+void ApplicationManager::SaveAll(ofstream& Fout)
 {
-	for (int i = FigCount-1; i>=0; i--)
-	{
-		if (FigList[i]->isinside(p))
-		{
-			return FigList[i];
-		}
-	}
-	return NULL;
+	Fout << FigCount << endl;
+	for (int i = 0; i < FigCount; i++)
+		FigList[i]->Save(Fout);
 }
+
+////////////////////////////////////////////////////////////////////////////////////
+
+
 //==================================================================================//
 //							Interface Management Functions							//
 //==================================================================================//
@@ -457,113 +551,8 @@ Input *ApplicationManager::GetInput() const
 //Return a pointer to the output
 Output *ApplicationManager::GetOutput() const
 {	return pOut; }
-void ApplicationManager::SaveAll(ofstream& Fout)
-{
-	Fout<<FigCount<<endl;
-	for(int i=0; i<FigCount; i++)
-		FigList[i]->Save(Fout);
-}
-void ApplicationManager::addtoundolist(Action* pAct)
-{
-	Action*temp1,*temp2;
-	if(undoact<5)
-	{
-		undolist[undoact]=pAct;
-		undoact++;
-	}
-	else 
-	{
-		temp1=undolist[3];
-		undolist[3]=undolist[4];
-		for(int i=3;i>0;i--)
-		{
-			temp2=undolist[i-1];
-			undolist[i-1]=temp1;
-			temp1=temp2;
-		}
-		undolist[4]=pAct;
-	}
-}
-void ApplicationManager::addtoredolist(Action* pAct)
-{
-	Action*temp1,*temp2;
-	if(redoact<5)
-	{
-		redolist[redoact]=pAct;
-		redoact++;
-	}
-	else 
-	{
-		temp1=redolist[3];
-		redolist[3]=redolist[4];
-		for(int i=3;i>0;i--)
-		{
-			temp2=redolist[i-1];
-			redolist[i-1]=temp1;
-			temp1=temp2;
-		}
-		redolist[4]=pAct;
-	}
-}
-void ApplicationManager::removefromundolist()
-{
-	cpyundoaction=getundoaction();
-	int remove;
-	if(!undolist[0])
-		return;
-	for(int i=0;i<5;i++)
-	{
-		if(undolist[i])
-			remove=i;
-	}
-	undolist[remove]=NULL;
-	undoact--;
-}
-void ApplicationManager::removefromredolist()
-{
-	int remove;
-	if(!redolist[0])
-		return;
-	for(int i=0;i<5;i++)
-	{
-		if(redolist[i])
-			remove=i;
-	}
-	redolist[remove]=NULL;
-	redoact--;
-}
-Action* ApplicationManager::getundoaction()
-{
-	Action* undoaction;
-	if(!undolist[0])
-		return NULL;
-	for(int i=0;i<5;i++)
-	{
-		if(undolist[i])
-			undoaction=undolist[i];
-		else 
-			return undoaction;
-	}
-	return undoaction;
-}
-Action* ApplicationManager::getcpyundoaction()
-{
-	return cpyundoaction;
-}
-Action* ApplicationManager::getredoaction()
-{
-	Action* redoaction;
-	if(!redolist[0])
-		return NULL;
-	for(int i=0;i<5;i++)
-	{
-		if(redolist[i])
-			redoaction=redolist[i];
-		else 
-			return redoaction;
-	}
-	return redoaction;
-}
+
+
 ////////////////////////////////////////////////////////////////////////////////////
 //Destructor
 ApplicationManager::~ApplicationManager()

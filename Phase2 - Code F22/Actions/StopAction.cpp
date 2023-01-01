@@ -5,21 +5,30 @@
 #include "..\GUI\Output.h"
 
 StopAction::StopAction(ApplicationManager* pApp) :Action(pApp)
-{}
+{
+	pManager->setisundo(false);
+	pManager->setisredo(false);
+}
 
 void StopAction::ReadActionParameters()
 {
 	Output* pOut = pManager->GetOutput();
 
-	pOut->PrintMessage("stop recording");
+	bool rec = pManager->getrecording();
+	if (rec)
+		pOut->PrintMessage("stop recording");
+	else
+		pOut->PrintMessage("you must turn on recording first");
 }
 
 void StopAction::Execute(bool w)
 {
 	if (w)
-    ReadActionParameters();
+		ReadActionParameters();
+	bool rec = pManager->getrecording();
+	if (rec)
+		pManager->setstop(true);
 	pManager->setrecording(false);
-	pManager->setstop(true);
 }
 
 bool StopAction::isrecord()

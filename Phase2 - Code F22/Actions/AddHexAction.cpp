@@ -7,7 +7,10 @@
 #include "..\GUI\Output.h"
 
 AddHexAction::AddHexAction(ApplicationManager* pApp) :Action(pApp)
-{}
+{
+	pManager->setisundo(true);
+	pManager->setisredo(false);
+}
 
 void AddHexAction::ReadActionParameters()
 {

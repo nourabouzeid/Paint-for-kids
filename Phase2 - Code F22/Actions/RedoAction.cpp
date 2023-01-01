@@ -5,7 +5,10 @@
 #include "..\GUI\Output.h"
 
 RedoAction::RedoAction(ApplicationManager* pApp) :Action(pApp)
-{}
+{
+	pManager->setisundo(false);
+	pManager->setisredo(false);
+}
 
 void RedoAction::ReadActionParameters()
 {
@@ -14,7 +17,8 @@ void RedoAction::ReadActionParameters()
 
 void RedoAction::Execute(bool w)
 {
-	Output* pOut = pManager->GetOutput();	
+	Output* pOut = pManager->GetOutput();
+	if(w)
 	ReadActionParameters();
 	if(!redoaction)
 	{
@@ -28,7 +32,7 @@ void RedoAction::Execute(bool w)
 
 bool RedoAction::isrecord()
 {
-	return false;
+	return true;
 }
 void RedoAction::undo()
 {

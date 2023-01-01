@@ -4,7 +4,10 @@
 #include "..\GUI\Output.h"
 
 SoundAction::SoundAction(ApplicationManager* pApp):Action(pApp)
-{}
+{
+	pManager->setisundo(false);
+	pManager->setisredo(false);
+}
 
 void SoundAction::ReadActionParameters()
 {

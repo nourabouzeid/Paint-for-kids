@@ -5,7 +5,10 @@
 
 
 CreatDAction::CreatDAction(ApplicationManager* pApp) :Action(pApp)
-{}
+{
+	pManager->setisundo(false);
+	pManager->setisredo(false);
+}
 
 
 

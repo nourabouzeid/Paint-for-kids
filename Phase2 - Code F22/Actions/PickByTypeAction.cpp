@@ -8,6 +8,8 @@
 
 PickByTypeAction::PickByTypeAction(ApplicationManager* pApp):Action(pApp)
 {
+	pManager->setisundo(false);
+	pManager->setisredo(false);
 	counter=0;
 	icounter=0;
 }
