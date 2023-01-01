@@ -7,7 +7,7 @@ class AddHexAction : public Action
 {
 private:
 	Point P1; //Rectangle Corners
-	CHex* R;
+	CHex* R,*cpyR;
 	GfxInfo RectGfxInfo;
 public:
 	AddHexAction(ApplicationManager* pApp);

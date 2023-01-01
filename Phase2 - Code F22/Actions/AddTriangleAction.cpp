@@ -61,11 +61,10 @@ bool AddTriangleAction::isrecord()
 }
 void AddTriangleAction::undo()
 {
-		Output*pOut=pManager->GetOutput();
-	pOut->ClearDrawArea();
+	cpyR=R;
 	pManager->deletefigure(R);
 }
 void AddTriangleAction::redo()
 {
-	pManager->AddFigure(R);
+	pManager->AddFigure(cpyR);
 }

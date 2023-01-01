@@ -34,4 +34,5 @@ void UndoAction::undo()
 }
 void UndoAction::redo()
 {
+	undoaction->redo();
 }

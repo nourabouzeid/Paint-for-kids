@@ -4,6 +4,7 @@ class DeleteFigureAction : public Action
 {
 private:
 	CFigure* cf;
+	CFigure* cpycf;
 public:
 	DeleteFigureAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();

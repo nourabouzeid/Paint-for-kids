@@ -56,9 +56,10 @@ bool AddRectAction::isrecord()
 }
 void AddRectAction::undo()
 {
+	cpyR=R;
 	pManager->deletefigure(R);
 }
 void AddRectAction::redo()
 {
-	pManager->AddFigure(R);
+	pManager->AddFigure(cpyR);
 }

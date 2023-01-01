@@ -20,6 +20,8 @@ ApplicationManager::ApplicationManager()
 	sound=false;
 	undoact=0;
 	isundo=false;
+	isredo=false;
+	redoact=0;
 		
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
@@ -28,6 +30,8 @@ ApplicationManager::ApplicationManager()
 		act[i] = NULL;
 	for (int i = 0; i < 5; i++)
 		undolist[i] = NULL;
+	for (int i = 0; i < 5; i++)
+		redolist[i] = NULL;
 }
 
 //==================================================================================//
@@ -50,52 +54,64 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	   case FIG:
 		   pAct = new CreatFigureAction(this);  
 		   isundo=false;
+		   isredo=false;
 		   break;
 		case DRAW_RECT:
 			pAct = new AddRectAction(this);
 			isundo=true;
+			isredo=false;
 			break;
 		case DRAW_SQUARE:
 			pAct = new AddSqrAction(this);
 			isundo=true;
+			isredo=false;
 			break;
 		case DRAW_HEXA:
 			pAct = new AddHexAction(this);
 			isundo=true;
+			isredo=false;
 			break;
 		case DRAW_CIRCLE:
 			pAct = new AddCircleAction(this);
 			isundo=true;
+			isredo=false;
 			break;
 		case DRAW_TRIANGLE:
 			pAct = new AddTriangleAction(this);
 			isundo=true;
+			isredo=false;
 			break;
 		case SELECT:
 			pAct = new SelectAction(this);
 			isundo=false;
+			isredo=false;
 			break;
 		case TO_DRAW1:
 			pAct = new CreateDToolbarAction(this);
 			isundo=false;
+			isredo=false;
 			break;
 		case TO_DRAW2:
 			pAct = new CreateDToolbar2Action(this);
 			isundo=false;
+			isredo=false;
 			break;
 		case DRAW_COLOR:
 			pAct = new CreatDAction(this);
 			isundo=false;
+			isredo=false;
 			f = 1;
 			break;
 		case FILL_COLOR:
 			pAct = new CreatFAction(this);
 			isundo=false;
+			isredo=false;
 			f = 2;
 			break;
 		case BLACK_COLOR:
 			c1 = BLACK;
 			isundo=true;
+			isredo=false;
 			if (f == 1)
 				pAct = new DrawCAction(this);
 			else if(f==2)
@@ -103,6 +119,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case YELLOW_COLOR:
 			isundo=true;
+			isredo=false;
 			c1 = YELLOW;
 			if (f == 1)
 				pAct = new DrawCAction(this);
@@ -111,6 +128,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case ORANGE_COLOR:
 			isundo=true;
+			isredo=false;
 			c1 = ORANGE;
 			if (f == 1)
 				pAct = new DrawCAction(this);
@@ -119,6 +137,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case RED_COLOR:
 			isundo=true;
+			isredo=false;
 			c1 = RED;
 			if (f == 1)
 				pAct = new DrawCAction(this);
@@ -127,6 +146,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case GREEN_COLOR:
 			isundo=true;
+			isredo=false;
 			c1 = GREEN;
 			if (f == 1)
 				pAct = new DrawCAction(this);
@@ -135,6 +155,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case BLUE_COLOR:
 			isundo=true;
+			isredo=false;
 			c1 = BLUE;
 			if (f == 1)
 				pAct = new DrawCAction(this);
@@ -144,68 +165,84 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case TO_PLAY:
 			pAct = new CreatePToolbarAction(this);
 			isundo=false;
+			isredo=false;
 			break;
 		case MOVE:
 			pAct = new MoveAction(this);
 			isundo=true;
+			isredo=false;
 			break;
 		case SAVE:
 			pAct=new SaveAction(this);
 			isundo=false;
+			isredo=false;
 			break;
 		case LOAD:
 			pAct=new LoadAction(this);
 			isundo=false;
+			isredo=false;
 			break;
 		case PICKWITHTYPE:
 			pAct=new PickByTypeAction(this);
 			isundo=false;
+			isredo=false;
 			break;
 		case PICKWITHCOLOR:
 			pAct=new PickByColorAction(this);
 			isundo=false;
+			isredo=false;
 			break;
 		case PICKWITHTYPEANDCOLOR:
 			pAct=new PickByColorAndTypeAction(this);
 			isundo=false;
+			isredo=false;
 			break;
 		case CLEAR:
 			pAct = new ClearAllAction(this);
 			isundo=false;
+			isredo=false;
 			break;
 		case STARTRECORDING:
 			pAct = new StartAction(this);
 			isundo=false;
+			isredo=false;
 			startrecord = pAct;
 			break;
 		case STOPRECORDING:
 			pAct = new StopAction(this);
 			isundo=false;
+			isredo=false;
 			break;
 		case PLAYRECORDING:
 			pAct = new PlayRecordAction(this);
 			isundo=false;
+			isredo=false;
 			break;
 		case SOUND:
 			pAct = new SoundAction(this);
 			isundo=false;
+			isredo=false;
 			break;
 		case DELET:
 			pAct = new DeleteFigureAction(this);
 			isundo=true;
+			isredo=false;
 			break;
 		case UNDO:
 			pAct = new UndoAction(this);
 			isundo=false;
+			isredo=true;
 			break;
 		case REDO:
 			pAct = new RedoAction(this);
 			isundo=false;
+			isredo=false;
 			break;
 		case EXIT:
 			///create ExitAction here
 			pAct=new ExitAction(this);
 			isundo=false;
+			isredo=false;
 			break;
 		
 		case STATUS:	//a click on the status bar ==> no action
@@ -218,7 +255,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		lastaction=pAct;
 		pAct->Execute(true);//Execute
 		if(isundo)
-		addtoundolist(lastaction);
+			addtoundolist(lastaction);
+		if(isredo)
+			addtoredolist(lastaction);
+		if(!isredo&&ActType!=REDO&&isundo)
+		{for (int i = 0; i < 5; i++)
+		redolist[i] = NULL;}
 		if (recording && ActType != STARTRECORDING)
 			startrecord->Execute(true);
 		pAct = NULL;
@@ -296,7 +338,6 @@ void ApplicationManager::deletefigure(CFigure* cf1)
 		}
 		if (FigList[i] == cf1 && i == (FigCount - 1))
 		{
-			delete FigList[i];
 			FigList[i] = NULL;
 			FigCount = FigCount - 1;
 			SelectedFig = NULL;
@@ -443,8 +484,30 @@ void ApplicationManager::addtoundolist(Action* pAct)
 		undolist[4]=pAct;
 	}
 }
+void ApplicationManager::addtoredolist(Action* pAct)
+{
+	Action*temp1,*temp2;
+	if(redoact<5)
+	{
+		redolist[redoact]=pAct;
+		redoact++;
+	}
+	else 
+	{
+		temp1=redolist[3];
+		redolist[3]=redolist[4];
+		for(int i=3;i>0;i--)
+		{
+			temp2=redolist[i-1];
+			redolist[i-1]=temp1;
+			temp1=temp2;
+		}
+		redolist[4]=pAct;
+	}
+}
 void ApplicationManager::removefromundolist()
 {
+	cpyundoaction=getundoaction();
 	int remove;
 	if(!undolist[0])
 		return;
@@ -455,6 +518,19 @@ void ApplicationManager::removefromundolist()
 	}
 	undolist[remove]=NULL;
 	undoact--;
+}
+void ApplicationManager::removefromredolist()
+{
+	int remove;
+	if(!redolist[0])
+		return;
+	for(int i=0;i<5;i++)
+	{
+		if(redolist[i])
+			remove=i;
+	}
+	redolist[remove]=NULL;
+	redoact--;
 }
 Action* ApplicationManager::getundoaction()
 {
@@ -469,6 +545,24 @@ Action* ApplicationManager::getundoaction()
 			return undoaction;
 	}
 	return undoaction;
+}
+Action* ApplicationManager::getcpyundoaction()
+{
+	return cpyundoaction;
+}
+Action* ApplicationManager::getredoaction()
+{
+	Action* redoaction;
+	if(!redolist[0])
+		return NULL;
+	for(int i=0;i<5;i++)
+	{
+		if(redolist[i])
+			redoaction=redolist[i];
+		else 
+			return redoaction;
+	}
+	return redoaction;
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Destructor

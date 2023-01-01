@@ -4,6 +4,7 @@ class UndoAction :public Action
 {
 private:
 	Action* undoaction;
+	
 public:
 	UndoAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();
@@ -11,5 +12,6 @@ public:
 	bool isrecord();
 	virtual void undo();
 	virtual void redo();
+	
 };
 

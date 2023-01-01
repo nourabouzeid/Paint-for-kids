@@ -8,7 +8,7 @@ class AddTriangleAction : public Action
 private:
 	Point P1, P2, P3; //Rectangle Corners
 	GfxInfo RectGfxInfo;
-	CTriangle*R;
+	CTriangle*R,*cpyR;
 public:
 	AddTriangleAction(ApplicationManager* pApp);
 

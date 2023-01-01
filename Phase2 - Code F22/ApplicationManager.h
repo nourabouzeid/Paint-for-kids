@@ -45,10 +45,11 @@ class ApplicationManager
 
 private:
 	color c1;
-	int FigCount, f, ID, actnum,undoact;		//Actual number of figures
+	int FigCount, f, ID, actnum,undoact,redoact;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 	Action* act[20];
 	Action* undolist[5];
+	Action* redolist[5];
 	bool recording, play, stop;
 	bool sound;
 	Action* lastaction;
@@ -58,8 +59,8 @@ private:
 	//Pointers to Input and Output classes
 	Input *pIn;
 	Output *pOut;
-	bool isundo;
-
+	bool isundo,isredo;
+	Action* cpyundoaction;
 public:	
 	ApplicationManager(); 
 	~ApplicationManager();
@@ -100,6 +101,10 @@ public:
 	Action* getundoaction();
 	Action* getlastaction();
 	void removefromundolist();
+	Action* getredoaction();
+	void addtoredolist(Action* pAct);
+	void removefromredolist();
+	Action* getcpyundoaction();
 };
 
 #endif

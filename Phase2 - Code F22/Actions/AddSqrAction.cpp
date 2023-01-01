@@ -52,11 +52,10 @@ bool AddSqrAction::isrecord()
 }
 void AddSqrAction::undo()
 {
-		Output*pOut=pManager->GetOutput();
-	pOut->ClearDrawArea();
+	cpyR=R;
 	pManager->deletefigure(R);
 }
 void AddSqrAction::redo()
 {
-	pManager->AddFigure(R);
+	pManager->AddFigure(cpyR);
 }

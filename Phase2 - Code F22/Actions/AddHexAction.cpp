@@ -52,11 +52,10 @@ bool AddHexAction::isrecord()
 }
 void AddHexAction::undo()
 {
-		Output*pOut=pManager->GetOutput();
-	pOut->ClearDrawArea();
+	cpyR=R;
 	pManager->deletefigure(R);
 }
 void AddHexAction::redo()
 {
-	pManager->AddFigure(R);
+	pManager->AddFigure(cpyR);
 }

@@ -56,9 +56,10 @@ bool AddCircleAction::isrecord()
 }
 void AddCircleAction::undo()
 {
+	cpyR=R;
 	pManager->deletefigure(R);
 }
 void AddCircleAction::redo()
 {
-	pManager->AddFigure(R);
+	pManager->AddFigure(cpyR);
 }
