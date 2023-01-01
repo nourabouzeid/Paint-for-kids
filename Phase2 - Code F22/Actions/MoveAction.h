@@ -4,6 +4,8 @@ class MoveAction : public Action
 {
 private:
 	Point p;
+	Point OldP;
+	CFigure* Figure;
 public:
 	MoveAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();

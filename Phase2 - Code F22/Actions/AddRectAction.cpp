@@ -44,30 +44,21 @@ void AddRectAction::Execute(bool w)
 	ReadActionParameters();
 	
 	//Create a rectangle with the parameters read from the user
-	Rect=new CRectangle(P1, P2, RectGfxInfo);
+	R=new CRectangle(P1, P2, RectGfxInfo);
+
 	//Add the rectangle to the list of figures
-	pManager->AddFigure(Rect);
+	pManager->AddFigure(R);
 }
 
 bool AddRectAction::isrecord()
 {
 	return true;
 }
-void AddRectAction::undo() 
+void AddRectAction::undo()
 {
-	Output* pOut = pManager->GetOutput();
-	pOut->ClearDrawArea();
-	pManager->deletefigure(Rect);
-	pManager->UpdateInterface();
-	pManager->GetOutput()->PrintMessage("Undo Drawing Rectangle");
+	pManager->deletefigure(R);
 }
-
-void AddRectAction::redo() 
+void AddRectAction::redo()
 {
-	Output* pOut = pManager->GetOutput();
-	pOut->ClearDrawArea();
-	pManager->AddFigure(Rect);
-	pManager->UpdateInterface();
-	pManager->GetOutput()->PrintMessage("Redo Drawing Rectangle");
-
+	pManager->AddFigure(R);
 }

@@ -77,3 +77,7 @@ GfxInfo CFigure::getGfxInfo()
 {
 	return FigGfxInfo;
 }
+void CFigure::setisfilled(bool f)
+{
+	FigGfxInfo.isFilled=f;
+}

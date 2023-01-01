@@ -68,3 +68,7 @@ string CSquare::figurename()
 {
 	return "SQUARE";
 }
+Point CSquare::getpoint()
+{
+	return midd;
+}

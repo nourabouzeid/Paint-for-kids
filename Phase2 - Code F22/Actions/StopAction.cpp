@@ -10,11 +10,8 @@ StopAction::StopAction(ApplicationManager* pApp) :Action(pApp)
 void StopAction::ReadActionParameters()
 {
 	Output* pOut = pManager->GetOutput();
-	bool rec = pManager->getrecording();
-	if(rec)
+
 	pOut->PrintMessage("stop recording");
-	else 
-	pOut->PrintMessage("you must start recording first..");
 }
 
 void StopAction::Execute(bool w)
@@ -29,5 +26,9 @@ bool StopAction::isrecord()
 {
 	return false;
 }
-void StopAction::undo(){}
-void StopAction::redo(){}
+void StopAction::undo()
+{
+}
+void StopAction::redo()
+{
+}

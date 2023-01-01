@@ -120,5 +120,10 @@ bool PickByColorAction::isrecord()
 {
 	return false;
 }
-void PickByColorAction::undo(){}
-void PickByColorAction::redo(){}
+void PickByColorAction::undo()
+{
+}
+
+void PickByColorAction::redo()
+{
+}

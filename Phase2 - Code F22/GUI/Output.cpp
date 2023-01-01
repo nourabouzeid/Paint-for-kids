@@ -14,8 +14,8 @@ Output::Output()
 	
 	UI.StatusBarHeight = 50;
 	UI.ToolBarHeight = 50;
-	UI.DrawMenuItemWidth = 70;
-	UI.PlayMenuItemWidth = 70;
+	UI.DrawMenuItemWidth = 75;
+	UI.PlayMenuItemWidth = 75;
 	
 	UI.DrawColor = BLUE;	//Drawing color
 	UI.FillColor = GREEN;	//Filling color
@@ -369,10 +369,7 @@ void Output::Drawcircle(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) 
 
 	pWind->DrawCircle(P1.x,P1.y , w, style);
 }
-GUI_MODE Output::GetInterfaceMode()
-{
-	return UI.InterfaceMode;
-}
+
 
 //////////////////////////////////////////////////////////////////////////////////////////
 Output::~Output()

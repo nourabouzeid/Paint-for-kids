@@ -75,3 +75,7 @@ string CHex::figurename()
 {
 	return "HEXAGON";
 }
+Point CHex::getpoint()
+{
+	return midd;
+}

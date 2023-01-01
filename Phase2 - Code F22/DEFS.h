@@ -40,8 +40,8 @@ enum ActionType //The actions supported (you can add more if needed)
 	STATUS,		//A click on the status bar
 	PICKWITHTYPE,
 	PICKWITHCOLOR,
-	SOUND,
-	PICKWITHTYPEANDCOLOR
+	PICKWITHTYPEANDCOLOR,
+	SOUND
 
 	///TODO: Add the other action types of the two modes
 };

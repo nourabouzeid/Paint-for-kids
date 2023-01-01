@@ -5,6 +5,9 @@ class FillCAction : public Action
 {
 private:
 	color c;
+	CFigure* cf1;
+	color oldc;
+	bool isfill;
 public:
 	FillCAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();

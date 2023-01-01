@@ -66,7 +66,7 @@ void PickByColorAndTypeAction::Execute(bool w)
 			Hex->Load(Fin);
 			pManager->AddFigure(Hex);
 			if(Hex->getGfxInfo().isFilled)
-			random[i++]=Hex->clrtostring((Hex->getGfxInfo()).FillClr)+" HEXAGON";
+			random[i++]=Hex->clrtostring((Hex->getGfxInfo()).FillClr)+" HEXGAON";
 			else
 				random[i++]="NO_FILL HEXAGON";
 		}
@@ -131,5 +131,10 @@ bool PickByColorAndTypeAction::isrecord()
 {
 	return false;
 }
-void PickByColorAndTypeAction::undo(){}
-void PickByColorAndTypeAction::redo(){}
+void PickByColorAndTypeAction::undo()
+{
+}
+void PickByColorAndTypeAction::redo()
+{
+}
+

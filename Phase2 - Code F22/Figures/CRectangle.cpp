@@ -74,4 +74,11 @@ string CRectangle::figurename()
 {
 	return "RECTANGLE";
 }
+Point CRectangle::getpoint()
+{
+	Point midd1;
+	midd1.x = ((Corner1.x+Corner2.x)/2);
+	midd1.y = ((Corner1.y + Corner2.y) / 2);
+	return midd1;
+}
 

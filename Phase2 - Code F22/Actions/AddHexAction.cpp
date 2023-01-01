@@ -40,29 +40,23 @@ void AddHexAction::Execute(bool w)
 	ReadActionParameters();
 
 	//Create a rectangle with the parameters read from the user
-	Hex = new CHex(P1, RectGfxInfo);
+	R = new CHex(P1, RectGfxInfo);
+
 	//Add the rectangle to the list of figures
-	pManager->AddFigure(Hex);
+	pManager->AddFigure(R);
 }
 
 bool AddHexAction::isrecord()
 {
 	return true;
 }
-void AddHexAction::undo() 
+void AddHexAction::undo()
 {
-	Output* pOut = pManager->GetOutput();
+		Output*pOut=pManager->GetOutput();
 	pOut->ClearDrawArea();
-	pManager->deletefigure(Hex);
-	pManager->UpdateInterface();
-	pManager->GetOutput()->PrintMessage("Undo Drawing Hexagon");
+	pManager->deletefigure(R);
 }
-
-void AddHexAction::redo() 
+void AddHexAction::redo()
 {
-	Output* pOut = pManager->GetOutput();
-	pOut->ClearDrawArea();
-	pManager->AddFigure(Hex);
-	pManager->UpdateInterface();
-	pManager->GetOutput()->PrintMessage("Redo Drawing Hexagon");
+	pManager->AddFigure(R);
 }

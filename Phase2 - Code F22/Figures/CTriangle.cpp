@@ -74,3 +74,10 @@ string CTriangle::figurename()
 {
 	return "TRIANGLE";
 }
+Point CTriangle::getpoint()
+{
+	Point midd1;
+	midd1.x = (Corner1.x + Corner2.x + Corner3.x) / 3;
+	midd1.y = (Corner1.y + Corner2.y + Corner3.y) / 3;
+	return midd1;
+}

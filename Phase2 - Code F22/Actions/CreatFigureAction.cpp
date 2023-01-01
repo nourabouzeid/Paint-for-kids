@@ -27,5 +27,9 @@ bool CreatFigureAction::isrecord()
 {
 	return true;
 }
- void CreatFigureAction::undo(){}
- void CreatFigureAction::redo(){}
+void CreatFigureAction::undo()
+{
+}
+void CreatFigureAction::redo()
+{
+}

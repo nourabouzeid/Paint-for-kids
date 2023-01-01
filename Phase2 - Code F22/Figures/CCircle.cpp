@@ -66,3 +66,7 @@ string CCircle::figurename()
 {
 	return "CIRCLE";
 }
+Point CCircle::getpoint()
+{
+	return midd;
+}

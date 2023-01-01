@@ -2,6 +2,7 @@
 #define APPLICATION_MANAGER_H
 
 #include <Windows.h>
+#include<MMSystem.h>
 #include "DEFS.h"
 #include "Figures\CFigure.h"
 #include "Actions\Action.h"
@@ -32,31 +33,32 @@
 #include "Actions\StartAction.h"
 #include "Actions\StopAction.h"
 #include "Actions\PlayRecordAction.h"
-#include "Actions\ExitAction.h"
+#include "Actions\SoundAction.h"
 #include "Actions\UndoAction.h"
 #include "Actions\RedoAction.h"
-#include "Actions\SoundAction.h"
+#include "Actions\ExitAction.h"
 
 //Main class that manages everything in the application.
 class ApplicationManager
 {
-	enum { MaxFigCount = 200 ,maxundoredocount=5};	//Max no of figures
+	enum { MaxFigCount = 200 };	//Max no of figures
 
 private:
 	color c1;
-	int FigCount, f, ID, actnum,undocount, redocount;	//Actual number of figures
+	int FigCount, f, ID, actnum,undoact;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 	Action* act[20];
-	Action* UndoList[maxundoredocount];
-	Action* RedoList[maxundoredocount];
+	Action* undolist[5];
 	bool recording, play, stop;
 	bool sound;
-	CFigure* SelectedFig; //Pointer to the selected figure
 	Action* lastaction;
+	CFigure* SelectedFig; //Pointer to the selected figure
 	Action* startrecord;
+	CFigure* lastfigure;
 	//Pointers to Input and Output classes
 	Input *pIn;
 	Output *pOut;
+	bool isundo;
 
 public:	
 	ApplicationManager(); 
@@ -77,8 +79,6 @@ public:
 	void setlastaction(Action* act);
 	void excuteplayactions();
 	void deleteallfigure();
-	Action* getlastaction();
-	
 	void setrecording(bool rec);
 	bool getrecording();
 	void setplay(bool rec);
@@ -94,12 +94,12 @@ public:
 	Output *GetOutput() const; //Return pointer to the output
 	void UpdateInterface() const;	//Redraws all the drawing window	
 	string clrtostring(color clr);
-	Action* UndoLastAction();	// Get Last Action in UndoList and call function undo inside it
-	Action* RedoLastAction();	// Get Last Action in RedoList and call function redo inside it
-	void AddToUndoList(Action* pAct); //add actions to undo list
-	bool DeleteLastFig();	//deletes last figure in the figlist
 	bool getsound();
 	void setsound(bool f);
+	void addtoundolist(Action* pAct);
+	Action* getundoaction();
+	Action* getlastaction();
+	void removefromundolist();
 };
 
 #endif

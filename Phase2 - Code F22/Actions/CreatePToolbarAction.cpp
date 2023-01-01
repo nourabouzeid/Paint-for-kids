@@ -29,5 +29,9 @@ bool CreatePToolbarAction::isrecord()
 {
 	return false;
 }
- void CreatePToolbarAction::undo(){}
- void CreatePToolbarAction::redo(){}
+void CreatePToolbarAction::undo()
+{
+}
+void CreatePToolbarAction::redo()
+{
+}

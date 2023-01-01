@@ -5,9 +5,6 @@
 class ClearAllAction : public Action
 {
 private:
-	ofstream Fout;
-	ifstream Fin;
-	string fig;
 public:
 	ClearAllAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();

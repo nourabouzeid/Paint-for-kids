@@ -17,16 +17,14 @@ void MoveAction::ReadActionParameters()
 	Input* pIn = pManager->GetInput();
 
 	pOut->PrintMessage("please Click a point you want to move there");
-
+	Figure=pManager->getselectedfigure();
+	OldP=Figure->getpoint();
 	//Read 1st corner and store in point P1
 	pIn->GetPointClicked(p.x, p.y);
 
 	pOut->ClearStatusBar();
 	pOut->ClearDrawArea();
 }
-
-
-
 
 void MoveAction::Execute(bool w)
 {
@@ -39,5 +37,13 @@ bool MoveAction::isrecord()
 {
 	return true;
 }
-void MoveAction::undo(){}
-void MoveAction::redo(){}
+
+void MoveAction::undo()
+{
+	Figure->move(OldP);
+}
+
+void MoveAction::redo()
+{
+	Figure->move(p);
+}

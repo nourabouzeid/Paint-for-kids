@@ -17,7 +17,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -220,19 +220,19 @@
     <ClInclude Include="Actions\DrawCAction.h" />
     <ClInclude Include="Actions\ExitAction.h" />
     <ClInclude Include="Actions\FillCAction.h" />
-    <ClInclude Include="Actions\RedoAction.h" />
-    <ClInclude Include="Actions\SoundAction.h" />
-    <ClInclude Include="Actions\UndoAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\MoveAction.h" />
     <ClInclude Include="Actions\PickByColorAction.h" />
     <ClInclude Include="Actions\PickByColorAndTypeAction.h" />
     <ClInclude Include="Actions\PickByTypeAction.h" />
     <ClInclude Include="Actions\PlayRecordAction.h" />
+    <ClInclude Include="Actions\RedoAction.h" />
     <ClInclude Include="Actions\SaveAction.h" />
     <ClInclude Include="Actions\SelectAction.h" />
+    <ClInclude Include="Actions\SoundAction.h" />
     <ClInclude Include="Actions\StartAction.h" />
     <ClInclude Include="Actions\StopAction.h" />
+    <ClInclude Include="Actions\UndoAction.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />
     <ClInclude Include="CMUgraphicsLib\CMUgraphics.h" />
     <ClInclude Include="CMUgraphicsLib\colors.h" />

@@ -3,7 +3,7 @@
 class DeleteFigureAction : public Action
 {
 private:
-	CFigure* Fig;
+	CFigure* cf;
 public:
 	DeleteFigureAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();

@@ -31,6 +31,9 @@ bool PlayRecordAction::isrecord()
 {
 	return false;
 }
-void PlayRecordAction::undo(){}
-void PlayRecordAction::redo(){}
-
+void PlayRecordAction::undo()
+{
+}
+void PlayRecordAction::redo()
+{
+}

@@ -5,6 +5,8 @@ class DrawCAction : public Action
 {
 private:
 	color c;
+	CFigure* cf1;
+	color oldc;
 public:
 	DrawCAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();

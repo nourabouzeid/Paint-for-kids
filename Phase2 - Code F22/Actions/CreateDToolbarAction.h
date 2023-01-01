@@ -12,5 +12,6 @@ public:
 	bool isrecord();
 	virtual void undo();
 	virtual void redo();
+
 };
 

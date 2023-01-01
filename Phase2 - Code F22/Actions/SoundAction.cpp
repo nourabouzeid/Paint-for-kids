@@ -22,6 +22,9 @@ bool SoundAction::isrecord()
 {
 	return false;
 }
-void SoundAction::undo(){}
-void SoundAction::redo(){}
-
+void SoundAction::undo()
+{
+}
+void SoundAction::redo()
+{
+}

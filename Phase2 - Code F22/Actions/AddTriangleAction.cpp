@@ -49,29 +49,23 @@ void AddTriangleAction::Execute(bool w)
 	ReadActionParameters();
 
 	//Create a rectangle with the parameters read from the user
-	 Trg = new CTriangle(P1, P2, P3, RectGfxInfo);
+	R = new CTriangle(P1, P2, P3, RectGfxInfo);
+
 	//Add the rectangle to the list of figures
-	pManager->AddFigure(Trg);
+	pManager->AddFigure(R);
 }
 
 bool AddTriangleAction::isrecord()
 {
 	return true;
 }
-void AddTriangleAction::undo() 
+void AddTriangleAction::undo()
 {
-	Output* pOut = pManager->GetOutput();
+		Output*pOut=pManager->GetOutput();
 	pOut->ClearDrawArea();
-	pManager->deletefigure(Trg);
-	pManager->UpdateInterface();
-	pManager->GetOutput()->PrintMessage("Undo Drawing Triangle");
+	pManager->deletefigure(R);
 }
-
-void AddTriangleAction::redo() 
+void AddTriangleAction::redo()
 {
-	Output* pOut = pManager->GetOutput();
-	pOut->ClearDrawArea();
-	pManager->AddFigure(Trg);
-	pManager->UpdateInterface();
-	pManager->GetOutput()->PrintMessage("Redo Drawing Triangle");
+	pManager->AddFigure(R);
 }

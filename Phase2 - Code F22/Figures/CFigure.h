@@ -34,6 +34,8 @@ public:
 	virtual void Load(ifstream&Fin)=0;
 	virtual string figurename()=0;
 	GfxInfo getGfxInfo();
+	virtual Point getpoint()=0;
+	void setisfilled(bool f);
 
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure

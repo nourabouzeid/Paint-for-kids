@@ -10,24 +10,28 @@ DeleteFigureAction::DeleteFigureAction(ApplicationManager* pApp) :Action(pApp)
 
 
 void DeleteFigureAction::ReadActionParameters()
-{}
+{
+	cf= pManager->getselectedfigure();
+}
 
 
 
 
 void DeleteFigureAction::Execute(bool w)
 {
-	Output* pOut = pManager->GetOutput();
-	pOut->ClearDrawArea();
-	Fig= pManager->getselectedfigure();
-	pManager->deletefigure(Fig);
+	ReadActionParameters();
+	pManager->deletefigure(cf);
 }
 
 bool DeleteFigureAction::isrecord()
 {
 	return true;
 }
- void DeleteFigureAction::undo()
- {	
- }
- void DeleteFigureAction::redo(){}
+void DeleteFigureAction::undo()
+{
+	pManager->AddFigure(cf);
+}
+void DeleteFigureAction::redo()
+{
+	pManager->deletefigure(cf);
+}
